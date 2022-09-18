@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Route, Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -9,7 +10,7 @@ export class NavbarComponent implements OnInit {
 
   loggeado: boolean;
 
-  constructor() { }
+  constructor(private route:Router) { }
 
   ngOnInit(): void {
     if(localStorage.getItem('persona')){
@@ -19,7 +20,8 @@ export class NavbarComponent implements OnInit {
 
   cerrarSesion(){
     localStorage.clear();
-    window.location.reload();
+    this.route.navigate(['']);
+    // window.location.reload();
   }
 
 }

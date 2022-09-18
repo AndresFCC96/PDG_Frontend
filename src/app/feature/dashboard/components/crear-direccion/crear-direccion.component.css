@@ -2,14 +2,13 @@
   height: calc(100% - 80px);
   overflow: hidden;
   background: url(../../../../../assets/Fondos/undraw_visionary_technology_re_jfp7.svg);
-  background-position: center;
+  object-fit: fill;
   background-size: cover;
-  position: absolute;
+  background-repeat: no-repeat;
   display: flex;
   align-items: center;
   justify-content: center;
   justify-items: center;
-  margin-inline-start: 14%;
 }
 
 .profile-box {

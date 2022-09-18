@@ -2,14 +2,13 @@
   height: calc(100% - 80px);
   overflow: hidden;
   background: url(../../../../../assets/Fondos/undraw_counting_stars_re_smvv.svg);
-  background-position: center;
+  object-fit: fill;
   background-size: cover;
-  position: absolute;
+  background-repeat: no-repeat;
   display: flex;
   align-items: center;
   justify-content: center;
   justify-items: center;
-  margin-inline-start: 15%;
 }
 
 .profile-box {
