@@ -9,5 +9,7 @@ export const environment = {
     messagingSenderId: '19634567986',
     measurementId: 'G-B6TRLTQLWN',
   },
+  UrlBase: 'https://betleague-backend.herokuapp.com',
+  isLogged: false,
   production: true
 };
