@@ -1,0 +1,57 @@
+<app-navbar></app-navbar>
+
+<div class="container">
+  <div class="profile-box">
+    <app-dashboard></app-dashboard>
+
+    <div class="card">
+      <div class="table-title">
+          <h2>Lista de productos</h2>
+      </div>
+      <div class="table-concept"><input class="table-radio" type="radio" name="table_radio" id="table_radio_0" checked="checked" />
+          <div class="table-display">Mostrando {{sizeProductos}} resultados</div>
+          <table>
+              <thead>
+                  <tr>
+                      <th>No</th>
+                      <th>NOMBRE</th>
+                      <th>CATEGORIA</th>
+                      <th>AUTOR</th>
+                      <th>DESCRIPCION</th>
+                      <th>VALORACION</th>
+                      <th>ESTADO</th>
+                      <th>ACCIONES</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr *ngFor="let producto of productos | slice: (page-1) * pageSize : page * pageSize">
+                      <td>{{producto.idproducto}}</td>
+                      <td>{{producto.nombre}}</td>
+                      <td>{{producto.categoria}}</td>
+                      <td>{{producto.autor}}</td>
+                      <td>{{producto.descripcion}}</td>
+                      <td>{{producto.valoracionAutor|currency:"COP":'symbol-narrow':'3.0'}}</td>
+                      <td *ngIf="producto.estado === 'A'; else elseBlock">Activo</td>
+                      <ng-template #elseBlock>
+                        <td>Inactivo</td>
+                      </ng-template>
+                      <td>
+                        <button mat-fab color="primary" title="Descargar archivo" (click)="descargarArchivoProducto(producto)">
+                            <mat-icon>download</mat-icon>
+                        </button>
+                      </td>
+                  </tr>
+
+              </tbody>
+
+          </table>
+          <ngb-pagination
+          class="paginador"
+          [(page)]="page"
+          [pageSize]="pageSize"
+          [collectionSize]="sizeProductos"></ngb-pagination>
+      </div>
+  </div>
+
+    </div>
+  </div>

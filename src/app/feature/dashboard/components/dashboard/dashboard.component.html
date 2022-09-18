@@ -1,0 +1,21 @@
+<div class="menu-wrap" [style.right.px]="posicionX" [style.top.px]="posicionY">
+  <input type="checkbox" class="toggler">
+  <div class="hamburger"><div></div></div>
+    <div class="menu">
+      <div>
+        <div>
+          <ul>
+            <li><a href="#">Inicio</a></li>
+            <li><a href="#" [routerLink]="['/Dashboard/editUserInfo']" >Modificar datos</a></li>
+            <li><a href="#" [routerLink]="['/addProduct']">Subastar un producto</a></li>
+            <li><a href="#" [routerLink]="['/Dashboard/addDireccion']">Crear direccion</a></li>
+            <li><a href="#" [routerLink]="['/Dashboard/direccionesList']">Ver lista de direcciones</a></li>
+            <!-- <li><a href="#" [routerLink]="['/listProduct']">Ver mis compras</a></li> -->
+            <!-- <li><a href="#" [routerLink]="['/Dashboard/cloud']">Ver mis archivos</a></li> -->
+            <!-- <li><a href="#" [routerLink]="['/paymentDetails']">Añadir nuevo metodo de pago</a></li> -->
+            <!-- <li><a href="#" [routerLink]="['/Dashboard/metodosList']">Ver mis metodos de pago</a></li> -->
+          </ul>
+        </div>
+      </div>
+    </div>
+</div>

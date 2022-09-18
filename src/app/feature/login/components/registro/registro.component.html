@@ -1,0 +1,65 @@
+<body>
+  <section class="side">
+    <img src="../../../../../assets/Images/img.svg" alt="">
+  </section>
+
+  <section class="main">
+    <div class="login-container">
+      <img src="../../../../../assets/Logos/Betleague_loginlarge.png" alt="">
+      <p class="title">Llene el siguiente formulario</p>
+      <div class="separator"></div>
+
+
+      <form [formGroup]="logupForm" class="login-form">
+        <div class="col-3 input-effect">
+          <input class="effect-16" formControlName="nombre" type="text" placeholder="Nombres" minlength="8"
+            maxlength="25" required>
+          <span class="focus-border"></span>
+        </div>
+
+        <div class="col-3 input-effect">
+          <input class="effect-16" formControlName="apellidos" type="text" placeholder="Apellidos" minlength="8"
+            maxlength="25" required>
+          <span class="focus-border"></span>
+        </div>
+
+        <div class="col-3 input-effect">
+          <input class="effect-16" formControlName="cedula" type="number" placeholder="Cedula" minlength="8"
+            maxlength="25" required>
+          <span class="focus-border"></span>
+        </div>
+
+        <div class="col-3 input-effect">
+          <input class="effect-16" formControlName="telefono" type="text" placeholder="Telefono" minlength="8"
+            maxlength="25" required>
+          <span class="focus-border"></span>
+        </div>
+
+        <div class="col-3 input-effect">
+          <input class="effect-16" formControlName="email" type="email" placeholder="Email" minlength="8"
+            maxlength="25" required>
+          <span class="focus-border"></span>
+        </div>
+
+        <div class="col-3 input-effect">
+          <input class="effect-16" formControlName="contra" type="password" placeholder="Contraseña" minlength="8"
+            maxlength="25" required>
+          <span class="focus-border"></span>
+        </div>
+
+        <div class="col-3 input-effect">
+          <input class="effect-16" formControlName="recontra" type="password" placeholder="Repetir Contraseña" minlength="8"
+            maxlength="25" required>
+          <span class="focus-border"></span>
+        </div>
+
+        <button class="submit" (click)="handleLogup()">Registrarse</button>
+        <p class="registrarse">
+          <a [routerLink]="['/Auth/Login']">Volver al inicio</a>
+        </p>
+      </form>
+
+    </div>
+  </section>
+
+</body>

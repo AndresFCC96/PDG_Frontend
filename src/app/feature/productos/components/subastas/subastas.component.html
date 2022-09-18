@@ -1,0 +1,137 @@
+<app-spinner></app-spinner>
+
+<app-navbar></app-navbar>
+
+<body >
+  <header id="page-top" class="page-section masthead2">
+    <div class="container">
+      <h1 class="section-header text-white font-weight-bold">Lista de productos subastados</h1>
+    </div>
+
+  </header>
+
+  <section class="page-section">
+    <div class="container">
+      <div class="row">
+
+        <div class="col-lg-3 blog-form">
+
+          <h2 class="blog-sidebar-title"><b>Categorias</b></h2>
+          <hr />
+
+          <p class="blog-sidebar-list"><b><span class="list-icon"> > </span> Arte</b></p>
+          <p class="blog-sidebar-list"><b><span class="list-icon"> > </span> Cripto</b></p>
+          <p class="blog-sidebar-list"><b><span class="list-icon"> > </span> Tecnologia</b></p>
+          <p class="blog-sidebar-list"><b><span class="list-icon"> > </span> Antiguedades</b></p>
+          <p class="blog-sidebar-list"><b><span class="list-icon"> > </span> Ropa y diseño de modas</b></p>
+
+          <div>&nbsp;</div>
+          <div>&nbsp;</div>
+
+          <h2 class="blog-sidebar-title"><b>Filtros</b></h2>
+          <hr />
+
+          <div class="input-group mb-3" >
+            <input type="text" [(ngModel)]="nombre" class="form-control" placeholder="Search" aria-label="Receipient's username"
+              aria-describely="basic-addon2">
+
+          </div>
+
+          <button type="button" class="btn btn-dark btn-lg" (click)="filtrarPorNombre()">Filtrar</button>
+          <button type="button" class="btn btn-light btn-lg" (click)="limpiarFiltros()">Limpiar</button>
+
+          <div>&nbsp;</div>
+          <div>&nbsp;</div>
+          <h2 class="blog-sidebar-title"><b>Tags</b></h2>
+          <!-- <p class="product-sidebar-list"><b>#accessorios, #computo</b></p>
+          <p class="product-sidebar-list"><b>#diseño, #moda, #arte</b></p>
+          <p class="product-sidebar-list"><b>#colombiano, #latino</b></p> -->
+          <mat-chip-list aria-label="Tags">
+            <mat-chip >Moda</mat-chip>
+            <mat-chip>Diseño</mat-chip>
+            <mat-chip>Accessorios</mat-chip>
+            <mat-chip >Computo</mat-chip>
+            <mat-chip>Colombiano</mat-chip>
+            <mat-chip>Latino</mat-chip>
+          </mat-chip-list>
+
+        </div>
+        <!--END  <div class="col-lg-3 blog-form">-->
+
+        <div class="col-lg-9" style="padding-left: 30px;">
+          <div class="row">
+            <div class="col" *ngIf="productosSize > 0, else elseBlock">
+              Mostrando {{productosSize}} resultados
+            </div>
+
+            <ng-template #elseBlock>
+              <div class="col">
+                No hay productos que mostrar
+              </div>
+            </ng-template>
+
+            <div class="col">
+              <select class="form-control" (change)="opcionSeleccionada($any($event.target).value)" [(ngModel)]="opcion">
+                <option [value]="filtro.value" *ngFor="let filtro of filtros">
+                  {{filtro.opcion}}
+                </option>
+              </select>
+            </div>
+          </div>
+          <div>&nbsp;</div>
+          <div>&nbsp;</div>
+
+          <div  class="row">
+            <div *ngFor="let producto of productos" class="col-sm-3 col-md-6 col-lg-4">
+              <div class="card">
+                <div class="card-body text-center">
+                  <img src={{producto.foto}} class="product-image">
+                  <h5 class="card-title"><b>{{producto.nombre}}</b></h5>
+                  <p class="card-text small">{{producto.descripcion}}</p>
+                  <p class="tags">Vendido por {{producto.autor}}</p>
+                  <p class="tags">Precio vendedor {{producto.valoracionAutor|currency:"COP":'symbol-narrow':'3.0'}}</p>
+                  <a class="btn btn-success button-text">Comprar</a>&nbsp;&nbsp;
+                  <a class="btn btn-success button-text" (click)="detalleProducto(producto)">Ver detalle</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <div>&nbsp;</div>
+  <div>&nbsp;</div>
+  <div>&nbsp;</div>
+
+  <div class="row">
+    <div class="col-lg-12">
+      <app-footer></app-footer>
+    </div>
+  </div>
+
+
+  <footer class="footer-info pt-5 py-4">
+    <div class="container">
+      <div class="small text-center text-muted">
+        <span class="footer-title">Betleague </span> <span class="copyright">&copy; All Right Reserved 2021</span>
+      </div>
+    </div>
+  </footer>
+
+
+  <!-- Bootstrap JavaScript -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+    integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+    crossorigin="anonymous"></script>
+
+
+</body>

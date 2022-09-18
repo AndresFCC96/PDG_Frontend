@@ -1,0 +1,59 @@
+<app-navbar></app-navbar>
+
+<div class="container">
+  <div class="profile-box">
+    <app-dashboard></app-dashboard>
+    <div class="card">
+      <div class="table-title">
+          <h2>Lista de metodos</h2>
+      </div>
+      <div class="table-concept"><input class="table-radio" type="radio" name="table_radio" id="table_radio_0" checked="checked" />
+          <div class="table-display">Mostrando {{sizeMetodos}} resultados</div>
+          <table>
+              <thead>
+                  <tr>
+                      <th>CEDULA</th>
+                      <th>PROPIETARIO</th>
+                      <th>NUMERO DE TARJETA</th>
+                      <th>MES</th>
+                      <th>YEAR</th>
+                      <th>CCV</th>
+                      <th>ACCIONES</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr *ngFor="let metodo of metodos | slice: (page-1) * pageSize : page * pageSize">
+                      <td>{{metodo.idCliente}}</td>
+                      <td>{{metodo.nombre}}</td>
+                      <td>{{metodo.numeroTarjeta}}</td>
+                      <td>{{metodo.mes}}</td>
+                      <td>{{metodo.year}}</td>
+                      <td>{{metodo.ccv}}</td>
+                      <td>
+                        <!-- <button (click)="borrarMetodo(metodo)" class="botones "  title="Editar">
+                          <mat-icon>edit</mat-icon>
+                        </button>
+                        <button (click)="borrarMetodo(metodo)" class="botones" title="Eliminar">
+                          <mat-icon>delete</mat-icon>
+                        </button> -->
+                        <button class="tooltip">
+                          <span class="tooltiptext">remove</span>
+                        </button>
+
+                      </td>
+                  </tr>
+
+              </tbody>
+
+          </table>
+          <ngb-pagination
+          class="paginador"
+          [(page)]="page"
+          [pageSize]="pageSize"
+          [collectionSize]="sizeMetodos"></ngb-pagination>
+      </div>
+  </div>
+
+    </div>
+  </div>
+

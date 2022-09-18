@@ -1,0 +1,58 @@
+<app-navbar></app-navbar>
+
+<div class="container">
+  <div class="profile-box">
+    <app-dashboard></app-dashboard>
+    <form [formGroup]="userForm" class="user-form">
+      <div class="col-3 input-effect">
+        <p class="atributo">Nombre</p>
+        <input class="effect-16 colorTexto" formControlName="nombre" type="text" placeholder={{cliente.nombre}} minlength="8"
+          maxlength="25" required>
+        <span class="focus-border"></span>
+      </div>
+
+      <div class="col-3 input-effect">
+        <p class="atributo">Apellido</p>
+        <input class="effect-16" formControlName="apellidos" type="text" placeholder={{cliente.apellidos}} minlength="8"
+          maxlength="25" required>
+        <span class="focus-border"></span>
+      </div>
+
+      <div class="col-3 input-effect">
+        <p class="atributo">Cedula</p>
+        <input class="effect-16" formControlName="cedula" type="number" placeholder={{cliente.cedula}} readonly>
+        <span class="focus-border"></span>
+      </div>
+
+      <div class="col-3 input-effect">
+        <p class="atributo">Telefono</p>
+        <input class="effect-16" formControlName="telefono" type="text" placeholder={{cliente.telefono}} minlength="8"
+          maxlength="25" required>
+        <span class="focus-border"></span>
+      </div>
+
+      <div class="col-3 input-effect">
+        <p class="atributo">Correo</p>
+        <input class="effect-16" formControlName="email" type="email" placeholder={{cliente.email}} minlength="8"
+          maxlength="25" required>
+        <span class="focus-border"></span>
+      </div>
+
+      <div class="col-3 input-effect">
+        <p class="atributo">Contraseña</p>
+        <input class="effect-16" formControlName="contra" type="password" placeholder="Contraseña" minlength="8"
+          maxlength="25" required>
+        <span class="focus-border"></span>
+      </div>
+
+      <div class="col-3 input-effect">
+        <p class="atributo">Repetir Contraseña</p>
+        <input class="effect-16" formControlName="recontra" type="password" placeholder="Repetir Contraseña" minlength="8"
+          maxlength="25" required>
+        <span class="focus-border"></span>
+      </div>
+      <button class="submit" (click)="actualizarDatos()" >Modificar Datos</button>
+    </form>
+
+  </div>
+</div>

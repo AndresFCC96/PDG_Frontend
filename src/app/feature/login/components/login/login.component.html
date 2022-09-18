@@ -1,0 +1,37 @@
+<body>
+  <section class="side">
+    <img src="../../../../../assets/Images/img.svg" alt="">
+  </section>
+
+  <section class="main">
+    <div class="login-container">
+      <a href="#" class="col-auto text-reset">
+        <img src="../../../../../assets/Logos/Betleague_login.png" alt="">
+      </a>
+      <p class="title">Bienvenido</p>
+      <div class="separator"></div>
+      <p class="welcome-message">A continuacion por favor ingrese su correo y contraseña</p>
+
+      <form [formGroup]="loginForm" class="login-form">
+        <div class="col-3 input-effect">
+          <input class="effect-16" formControlName="email" type="text" placeholder="Correo" minlength="8"
+            maxlength="25" required>
+          <span class="focus-border"></span>
+        </div>
+
+        <div class="col-3 input-effect">
+          <input class="effect-16" formControlName="contra" type="password" placeholder="Contraseña" minlength="8"
+            maxlength="25" required>
+          <span class="focus-border"></span>
+        </div>
+
+        <button class="submit" (click)="handleLogin()">Iniciar sesion</button>
+        <p class="registrarse">¿No tiene cuenta?
+          <a [routerLink]="['/Auth/Registro']">Registrarse</a>
+        </p>
+      </form>
+
+    </div>
+  </section>
+
+</body>

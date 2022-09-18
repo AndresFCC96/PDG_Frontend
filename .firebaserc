@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "betleague-af205": {
+      "hosting": {
+        "Frontend": [
+          "betleague-af205"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "betleague-af205"
+  }
+}

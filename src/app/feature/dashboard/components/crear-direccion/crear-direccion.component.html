@@ -1,0 +1,15 @@
+<app-navbar></app-navbar>
+
+<div class="container">
+  <div class="profile-box">
+    <app-dashboard></app-dashboard>
+    <form [formGroup]="direccionForm" class="direccion-form">
+      <div class="col-3 input-effect">
+        <p class="atributo">Direccion</p>
+        <input class="effect-16" formControlName="direccion" type="text" minlength="8" maxlength="25" required>
+        <span class="focus-border"></span>
+      </div>
+      <button class="submit" (click)="guardarDireccion()">Crear Direccion</button>
+    </form>
+  </div>
+</div>

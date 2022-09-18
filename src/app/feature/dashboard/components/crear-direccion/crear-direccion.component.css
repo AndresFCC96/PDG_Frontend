@@ -1,0 +1,379 @@
+.container {
+  height: calc(100% - 80px);
+  overflow: hidden;
+  background: url(../../../../../assets/Fondos/undraw_visionary_technology_re_jfp7.svg);
+  background-position: center;
+  background-size: cover;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  justify-items: center;
+  margin-inline-start: 14%;
+}
+
+.profile-box {
+  background: #83c5f7;
+  text-align: center;
+  padding: 40px 90px;
+  color: #fff;
+  border-radius: 20px;
+  position: relative;
+  /* margin-left: 55%;
+  margin-right: auto; */
+}
+
+.menu-icon {
+  width: 45px;
+  position: absolute;
+  right: 40px;
+  top: 40px;
+}
+
+.profile-box button {
+  background: #fff;
+  color: #0769e9;
+  border: none;
+  outline: none;
+  box-shadow: 0 5px 10px rgba(7, 81, 241, 0.5);
+  padding: 15px 60px;
+  cursor: pointer;
+  border-radius: 30px;
+  margin-bottom: -25%;
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.profile-box h3 {
+  font-size: 22px;
+  margin-top: 20px;
+  font-weight: 500;
+}
+
+.menu-wrap {
+  position: absolute;
+  right: 40px;
+  top: 40px;
+  z-index: 1;
+}
+
+.menu-wrap .toggler {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  cursor: pointer;
+  width: 50px;
+  height: 50px;
+  opacity: 0;
+}
+
+.menu-wrap .hamburger {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  width: 60px;
+  height: 60px;
+  padding: 1rem;
+  background: var(--primary-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Hamburger Line */
+.menu-wrap .hamburger > div {
+  position: relative;
+  flex: none;
+  width: 100%;
+  height: 2px;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.4s ease;
+}
+
+/* Hamburger Lines - Top & Bottom */
+.menu-wrap .hamburger > div::before,
+.menu-wrap .hamburger > div::after {
+  content: '';
+  position: absolute;
+  z-index: 1;
+  top: -10px;
+  width: 100%;
+  height: 2px;
+  background: inherit;
+}
+
+/* Moves Line Down */
+.menu-wrap .hamburger > div::after {
+  top: 10px;
+}
+
+/* Toggler Animation */
+.menu-wrap .toggler:checked + .hamburger > div {
+  transform: rotate(135deg);
+}
+
+/* Turns Lines Into X */
+.menu-wrap .toggler:checked + .hamburger > div:before,
+.menu-wrap .toggler:checked + .hamburger > div:after {
+  top: 0;
+  transform: rotate(90deg);
+}
+
+/* Rotate On Hover When Checked */
+.menu-wrap .toggler:checked:hover + .hamburger > div {
+  transform: rotate(225deg);
+}
+
+/* Show Menu */
+.menu-wrap .toggler:checked ~ .menu {
+  visibility: visible;
+}
+
+.menu-wrap .toggler:checked ~ .menu > div {
+  transform: scale(1);
+  transition-duration: var(--menu-speed);
+}
+
+.menu-wrap .toggler:checked ~ .menu > div > div {
+  opacity: 1;
+  transition:  opacity 0.4s ease 0.4s;
+}
+
+.menu-wrap .menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  visibility: hidden;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.menu-wrap .menu > div {
+  background: #0769e9;
+  border-radius: 50%;
+  width: 200vw;
+  height: 200vw;
+  display: flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  transform: scale(0);
+  transition: all 0.4s ease;
+}
+
+.menu-wrap .menu > div > div {
+  text-align: center;
+  max-width: 1000vw;
+  max-height: 1000vh;
+  opacity: 1;
+  background: #0769e9;
+  transition: opacity 0.4s ease;
+}
+
+.menu-wrap .menu > div > div > ul > li {
+  list-style: none;
+  color: #fff;
+  font-size: 1.5rem;
+  padding: 1rem;
+}
+
+.menu-wrap .menu > div > div > ul > li > a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.4s ease;
+}
+
+
+section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+section.side {
+  background: url(../../../../../assets/Images/bk.png) no-repeat;
+  background-size: 100% 102%;
+}
+
+.side img {
+  width: 50%;
+  max-width: 50%;
+}
+
+.login-container {
+  max-width: 450px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.title {
+  text-transform: uppercase;
+  font-size: 3em;
+  font-weight: bold;
+  text-align: center;
+  letter-spacing: 1px;
+}
+
+.separator {
+  width: 150px;
+  height: 4px;
+  background-color: #843bc7;
+  margin: 24px;
+}
+
+.welcome-message {
+  text-align: center;
+  font-size: 1.1em;
+  line-height: 28px;
+  margin-bottom: 30px;
+  color: #696969;
+}
+
+.direccion-form-form {
+  margin-top: 10%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+
+button {
+  border: none;
+  outline: none;
+  border-radius: 30px;
+  font-size: 1.1em;
+}
+
+
+button.submit {
+  color: #fff;
+  padding: 14px 64px;
+  margin: 32px auto;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: bold;
+  background-image: linear-gradient(to right, #8b33c5, #15a0e1);
+  cursor: pointer;
+  transition: opacity 0.4s;
+}
+
+button.submit:hover {
+  opacity: 0.9;
+}
+
+.atributo{
+  text-align: left;
+  float: left;
+}
+
+/* ----  Responsiveness   ----  */
+@media (max-width: 780px) {
+
+  body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+  }
+
+  .side {
+      display: none;
+  }
+}
+
+.registrarse {
+  color: #ffffff;
+  text-transform: uppercase;
+  font-weight: bold;
+  text-align: center;
+  letter-spacing: 1px;
+}
+
+.registrarse a {
+  color: #15a0e1;
+}
+
+input {
+  /* font: 15px/24px "Muli", sans-serif; */
+  color: rgb(255, 0, 0);
+  width: 100%;
+  height: 60%;
+  box-sizing: border-box;
+  letter-spacing: 1px;
+}
+
+:focus {
+  outline: none;
+}
+
+.col-3 {
+  float: left;
+  width: 100%;
+  margin-top: 2%;
+  /* margin-bottom: 5%; */
+  margin: 10px 3%;
+  /* position: absolute; */
+}
+
+/* necessary to give position: relative to parent. */
+input {
+  /* font: 15px/24px "Lato", Arial, sans-serif; */
+  color: #15a0e1;
+  width: 100%;
+  box-sizing: border-box;
+  letter-spacing: 1px;
+  padding: 40px;
+}
+
+.effect-16 {
+  border: 0;
+  padding: 4px 0;
+  border-bottom: 1px solid rgb(112, 112, 112);
+  background-color: transparent;
+}
+
+.effect-16 ~ .focus-border {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: #15a0e1;
+  transition: 0.4s;
+}
+.effect-16:focus ~ .focus-border,
+.has-content.effect-16 ~ .focus-border {
+  width: 100%;
+  transition: 0.4s;
+}
+.effect-16 ~ label {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  top: 9px;
+  color: #15a0e1;
+  transition: 0.3s;
+  z-index: -1;
+  letter-spacing: 0.5px;
+}
+.effect-16:focus ~ label,
+.has-content.effect-16 ~ label {
+  top: -16px;
+  font-size: 12px;
+  color: #15a0e1;
+  transition: 0.3s;
+}
+
+input{
+color: #fff;
+}

@@ -1,0 +1,12 @@
+.footer{
+  position: relative;
+  padding: 10px 10px 0px 10px;
+  bottom: 0;
+  width: 100%;
+  background: #59c89c;
+ }
+
+.img-logo{
+  width: 200px;
+  margin-bottom: 0px;
+}

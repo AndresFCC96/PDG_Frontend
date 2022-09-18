@@ -1,0 +1,35 @@
+<app-navbar></app-navbar>
+
+<div class="container">
+  <ng-container *ngIf="cliente.nombre">
+    <div class="profile-box">
+        <app-dashboard></app-dashboard>
+      <div>
+      <div class="marco">
+        <img src="../../../../../assets/Images/avatarpng.png"  alt="" class="profile-pic" *ngIf="cliente.foto === 'Default', else elseBlock">
+        <ng-template #elseBlock>
+          <img src="{{cliente.foto}}"  alt="" class="profile-pic">
+        </ng-template>
+        <div class="after">
+          <div class="overlay">
+            <label>Modificar avatar</label><br>
+            <button mat-fab color="warn" (click)="fileInput.click()">
+              <mat-icon>photo_camera</mat-icon>
+              <input hidden #fileInput type="file" id="file" accept="image/png, image/gif, image/jpeg" (change)="obtenerFoto($event)">
+            </button>
+          </div>
+        </div>
+    </div>
+      </div>
+      <h3>{{cliente.nombre + ' ' + cliente.apellidos}}
+      </h3>
+      <p>Ingeniero de Sistemas en la universidad San Buenaventura</p>
+        <button class="botonCaja" disabled>Informacion</button>
+      <!-- </ng-template> -->
+      <div class="profile-bottom">
+        <p>Ando caminando con un flow violento, con un piquete cabron</p>
+      </div>
+    </div>
+  </ng-container>
+
+</div>

@@ -1,0 +1,49 @@
+<header class="header">
+  <div class="container vh-50 ">
+
+    <!-- Navbar -->
+    <nav class="row text-white justify-content-between align-items-center text-uppercase ">
+    <!-- Logo -->
+    <a href="#" class="col-auto text-reset">
+      <img src="../../../../../assets/Logos/Betleague_inicio.png" alt="Logo Betleague" class="img-logo">
+      BetLeague
+    </a>
+    <!-- Anclas -->
+    <div class="col-auto">
+      <a href="#" class="text-reset pr-3">Inicio</a>
+      <a [routerLink]="['Soon']" href="#" class="text-reset pr-3">Acerca de Nosotros</a>
+      <a [routerLink]="['Subastas']" href="#" class="text-reset pr-3">Subastas</a>
+      <a *ngIf="loggeado === false ; else elseBlock" [routerLink]="['Auth/Login']" routerLinkActive="active" class="text-reset">Ingresar</a>
+      <ng-template #elseBlock>
+        <label>¡Hola! {{cliente.nombre}}
+          <button mat-button [matMenuTriggerFor]="menu"><mat-icon>more_vert</mat-icon></button>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item [routerLink]="['Dashboard/userProfile']">Ver cuenta</button>
+            <button mat-menu-item (click)="cerrarSesion()">Cerrar sesion</button>
+          </mat-menu>
+        </label>
+      </ng-template>
+    </div>
+    </nav>
+    <!-- Descripcion -->
+    <div class="row h-100 align-items-center">
+      <div class="col-6 text-white">
+        <!-- titulo -->
+        <h1 class="text-capitalize">
+          <span class="both h4">Un mundo de opciones</span> <br>
+          hasta tu puerta
+        </h1>
+        <!-- Descripcion -->
+        <p>
+          Somos una empresa encargada de brindarte un mundo <br>
+            completo de articulos de cualquier tipo, subastados<br>
+          por personas de todo el mundo hasta la puerta de tu casa.
+        </p>
+        <!-- Btn -->
+        <a href="#" class="text-reset btn btn-warning botonCompra both" [routerLink]="['Subastas']">Mira nuestros productos</a>
+      </div>
+    </div>
+  </div>
+  <img src="../../../../../assets/Images/cut-header.svg" alt="">
+</header>
+

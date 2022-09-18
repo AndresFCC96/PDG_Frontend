@@ -1,0 +1,46 @@
+.header{
+  background-image: url(/assets/Images/Vg.jpg);
+  background-position: center;
+  background-size: cover;
+  position: relative;
+}
+
+.img-logo{
+  width: 140px;
+}
+
+.header::after{
+  content: "";
+  display: block;
+  width: 100%;
+  height: 10px;
+  background-color: #fff;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+}
+
+.text-reset{
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.botonCompra{
+  margin-left: 0px;
+}
+
+.both{
+  color: cornflowerblue;
+  font-weight: 700;
+}
+.botonCompra:hover {
+  background: cornflowerblue;
+}
+
+.vh-50 {
+  height: 50vmin;
+}
+
+mat-icon{
+  color: #fff;
+}

@@ -1,0 +1,90 @@
+<app-navbar></app-navbar>
+
+<div class="container">
+  <div class="profile-box">
+    <app-dashboard></app-dashboard>
+
+    <form [formGroup]="loginForm" class="login-form">
+
+
+      <!-- (change)="obtenerFoto($event)" -->
+      <ng-container *ngIf="paso===1">
+        <br><br><br><br>
+        <div class="col-3 input-effect">
+          <p class="atributo">Nombre</p>
+          <input class="effect-16" formControlName="nombre" type="text" minlength="8" maxlength="25" required>
+        </div>
+
+        <div class="col-3 ">
+          <p class="atributo">Categoria</p>
+          <input class="effect-16" formControlName="categoria" type="text" minlength="8" maxlength="25" required>
+        </div>
+        <div class="col-3 input-effect">
+          <p class="atributo">Descripcion</p>
+          <input class="effect-16" formControlName="descripcion" type="text" minlength="8" maxlength="200" required>
+        </div>
+
+        <div class="col-3 input-effect">
+          <p class="atributo">Valoracion</p>
+          <input class="effect-16" formControlName="valoracionAutor" type="number" minlength="8" maxlength="25"
+            required>
+        </div>
+
+        <br><br><br><br>
+        <button class="submit button" (click)="siguiente()">Siguiente</button>
+      </ng-container>
+
+      <ng-container *ngIf="paso===2">
+        <br />
+        <label>Imagen del producto</label>
+        <div class="marco">
+          <img src="../../../../../assets/Logos/bet_league.png" alt="" class="product-pic"
+            *ngIf="rutaFoto === '' || rutaFoto === undefined, else elseBlock">
+          <ng-template #elseBlock>
+            <img src="{{rutaFoto}}" alt="" class="product-pic">
+          </ng-template>
+          <div class="after">
+            <div class="overlay">
+              <label>Modificar avatar</label><br>
+              <button mat-fab color="warn" (click)="fileInput.click()">
+                <mat-icon>photo_camera</mat-icon>
+
+                <input hidden #fileInput type="file" id="file" (change)="obtenerFoto($event)">
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <ng-container *ngIf="!archivo">
+          <br><br>
+          <label>Archivo</label>
+          <div class="file-container" *ngIf="!archivo">
+            <input type="file" (change)="obtenerArchivo($event)" class="file">
+          </div>
+          <br /><br />
+          <div class="containerBotones">
+            <button class="submit button botonesPost" (click)="anterior()">Anterior</button> <br>
+            <button class="submit button botonesPost" (click)="guardarProducto(); subirArchivo()">Crear Producto</button> <br>
+          </div>
+        </ng-container>
+
+        <ng-container *ngIf="archivo">
+          <div class="archivo-subido" *ngIf="archivo">
+            Nombre del archivo: {{archivo.name|slice: 0:30}} <br />
+            <button (click)="archivo = undefined" class="limpiar button">Limpiar</button>
+
+          </div><br /><br /><br />
+          <div class="containerBotones">
+            <button class="submit button botonesPost" (click)="anterior()">Anterior</button> &nbsp;&nbsp;&nbsp;&nbsp;<br>
+            <button class="submit button botonesPost" (click)="guardarProducto(); subirArchivo()">Crear Producto</button> <br>
+          </div>
+        </ng-container>
+
+
+
+      </ng-container>
+
+    </form>
+
+  </div>
+</div>

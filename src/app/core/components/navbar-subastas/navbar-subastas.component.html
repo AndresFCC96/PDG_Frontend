@@ -1,0 +1,34 @@
+<header class="header">
+  <nav class="nav">
+      <a href="#" class="col-auto text-reset">
+          <img src="../../../../../assets/Logos/BetLeague_subastas_large.png" alt="Logo Betleague" class="img-logo">
+      </a>
+    <button class="nav-toggle" aria-label="Abrir menú">
+      <i class="fas fa-bars"></i>
+    </button>
+    <ul class="nav-menu">
+      <li class="nav-menu-item">
+        <a href="#" class="nav-menu-link nav-link">Blog</a>
+      </li>
+      <li class="nav-menu-item">
+        <a href="#" class="nav-menu-link nav-link">Videos</a>
+      </li>
+      <li class="nav-menu-item">
+        <a href="#" [routerLink]="['/Subastas']" class="nav-menu-link nav-link">Subastas</a>
+      </li>
+      <li class="nav-menu-item">
+        <a href="#" *ngIf="loggeado === true; else elseBlock" [routerLink]="['/Dashboard/userProfile']" class="nav-menu-link nav-link">Perfil</a>
+        <ng-template #elseBlock>
+          <a href="#" [routerLink]="['/Auth/Login']" class="nav-menu-link nav-link">Iniciar Sesion</a>
+        </ng-template>
+      </li>
+      <ng-container *ngIf="loggeado === true">
+        <button mat-button [matMenuTriggerFor]="menu"><mat-icon [ngStyle]="{'color':'white'}">more_vert</mat-icon></button>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item (click)="cerrarSesion()">Cerrar sesion</button>
+          </mat-menu>
+      </ng-container>
+
+    </ul>
+  </nav>
+</header>

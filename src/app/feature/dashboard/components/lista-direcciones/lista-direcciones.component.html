@@ -1,0 +1,47 @@
+<app-navbar></app-navbar>
+
+<div class="container">
+  <div class="profile-box">
+    <app-dashboard></app-dashboard>
+    <div class="card">
+      <div class="table-title">
+          <h2>Lista de direcciones</h2>
+      </div>
+      <div class="table-concept"><input class="table-radio" type="radio" name="table_radio" id="table_radio_0" checked="checked" />
+          <div class="table-display">Mostrando {{sizeDirecciones}} resultados</div>
+          <table>
+              <thead>
+                  <tr>
+                      <th></th>
+                      <th>No</th>
+                      <th>DIRECCION</th>
+                      <th>CEDULA</th>
+                      <th>ESTADO</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr *ngFor="let direccion of direcciones | slice: (page-1) * pageSize : page * pageSize">
+                      <td><input type="checkbox" /></td>
+                      <td>{{direccion.idDireccion}}</td>
+                      <td>{{direccion.direccion}}</td>
+                      <td>{{direccion.cedulaCliente}}</td>
+                      <td *ngIf="direccion.estado === 'A'; else elseBlock">Activo</td>
+                      <ng-template #elseBlock>
+                        <td>Inactivo</td>
+                      </ng-template>
+                  </tr>
+
+              </tbody>
+
+          </table>
+          <ngb-pagination
+          class="paginador"
+          [(page)]="page"
+          [pageSize]="pageSize"
+          [collectionSize]="sizeDirecciones"></ngb-pagination>
+      </div>
+  </div>
+
+    </div>
+  </div>
+
