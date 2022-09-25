@@ -13,3 +13,7 @@ body { margin: 0 }
 
 html, body { width:  100%; }
 body { margin: 0 }
+
+.swalclass {
+  position: relative;
+}

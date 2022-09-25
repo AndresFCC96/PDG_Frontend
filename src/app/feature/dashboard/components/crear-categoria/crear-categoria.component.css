@@ -1,7 +1,12 @@
+body {
+  height: 100vh;
+  width: 100vw;
+}
+
 .container {
   height: calc(100% - 80px);
   overflow: hidden;
-  background: url(../../../../../assets/Fondos/undraw_counting_stars_re_smvv.svg);
+  background: url(../../../../../assets/Fondos/undraw_engineering_team_a7n2.svg);
   object-fit: fill;
   background-size: cover;
   background-repeat: no-repeat;
@@ -9,12 +14,12 @@
   align-items: center;
   justify-content: center;
   justify-items: center;
-    /* Centrado del div */
-    position: absolute;
-    left: 0;
-    right: 0;
-    margin-left: auto;
-    margin-right: auto;
+  /* Centrado del div */
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .profile-box {
@@ -22,8 +27,8 @@
   text-align: center;
   padding: 40px 90px;
   color: #fff;
-  position: absolute;
   border-radius: 20px;
+  position: relative;
 }
 
 .menu-icon {
@@ -33,48 +38,7 @@
   top: 40px;
 }
 
-.setting-icon {
-  width: 45px;
-  position: absolute;
-  left: 40px;
-  top: 40px;
-}
-
-.profile-pic {
-  height: 200px;
-  width: 200px;
-  border-radius: 50%;
-  padding: 6px;
-}
-
-.text {
-  color: white;
-  font-size: 20px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-  text-align: center;
-}
-
-.profile-bottom {
-  background: #fff;
-  color: #999;
-  padding: 60px;
-  margin-bottom: -40px;
-  border-radius: 20px;
-  margin-top: -10px;
-}
-
-.profile-bottom img {
-  width: 15px;
-  margin-top: 15px;
-  cursor: pointer;
-}
-
-.profile-box .botonCaja {
+.profile-box button {
   background: #fff;
   color: #0769e9;
   border: none;
@@ -83,8 +47,7 @@
   padding: 15px 60px;
   cursor: pointer;
   border-radius: 30px;
-  margin-bottom: -50px;
-  margin-top: 5%;
+  margin-bottom: -25%;
   font-weight: 600;
   font-size: 16px;
 }
@@ -143,7 +106,7 @@
 /* Hamburger Lines - Top & Bottom */
 .menu-wrap .hamburger > div::before,
 .menu-wrap .hamburger > div::after {
-  content: "";
+  content: '';
   position: absolute;
   z-index: 1;
   top: -10px;
@@ -186,7 +149,7 @@
 
 .menu-wrap .toggler:checked ~ .menu > div > div {
   opacity: 1;
-  transition: opacity 0.4s ease 0.4s;
+  transition:  opacity 0.4s ease 0.4s;
 }
 
 .menu-wrap .menu {
@@ -237,38 +200,188 @@
   transition: color 0.4s ease;
 }
 
-.marco{
-  position: relative;
-  background-color: white;
-  border-radius: 50%;
-  height: 200px;
-  width: 200px;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, 5%);
+
+section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.marco .after {
+section.side {
+  background: url(../../../../../assets/Images/bk.png) no-repeat;
+  background-size: 100% 102%;
+}
+
+.side img {
+  width: 50%;
+  max-width: 50%;
+}
+
+.login-container {
+  max-width: 450px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.title {
+  text-transform: uppercase;
+  font-size: 3em;
+  font-weight: bold;
+  text-align: center;
+  letter-spacing: 1px;
+}
+
+.separator {
+  width: 150px;
+  height: 4px;
+  background-color: #843bc7;
+  margin: 24px;
+}
+
+.welcome-message {
+  text-align: center;
+  font-size: 1.1em;
+  line-height: 28px;
+  margin-bottom: 30px;
+  color: #696969;
+}
+
+.direccion-form-form {
+  margin-top: 10%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+
+button {
+  border: none;
+  outline: none;
+  border-radius: 30px;
+  font-size: 1.1em;
+}
+
+
+button.submit {
+  color: #fff;
+  padding: 14px 64px;
+  margin: 32px auto;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: bold;
+  background-image: linear-gradient(to right, #8b33c5, #15a0e1);
+  cursor: pointer;
+  transition: opacity 0.4s;
+}
+
+button.submit:hover {
+  opacity: 0.9;
+}
+
+.atributo{
+  text-align: left;
+  float: left;
+}
+
+/* ----  Responsiveness   ----  */
+@media (max-width: 780px) {
+
+  body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+  }
+
+  .side {
+      display: none;
+  }
+}
+
+.registrarse {
+  color: #ffffff;
+  text-transform: uppercase;
+  font-weight: bold;
+  text-align: center;
+  letter-spacing: 1px;
+}
+
+.registrarse a {
+  color: #15a0e1;
+}
+
+input {
+  /* font: 15px/24px "Muli", sans-serif; */
+  color: rgb(255, 0, 0);
+  width: 100%;
+  height: 60%;
+  box-sizing: border-box;
+  letter-spacing: 1px;
+}
+
+:focus {
+  outline: none;
+}
+
+.col-3 {
+  float: left;
+  width: 100%;
+  margin-top: 2%;
+  /* margin-bottom: 5%; */
+  margin: 10px 3%;
+  /* position: absolute; */
+}
+
+/* necessary to give position: relative to parent. */
+input {
+  /* font: 15px/24px "Lato", Arial, sans-serif; */
+  color: #15a0e1;
+  width: 100%;
+  box-sizing: border-box;
+  letter-spacing: 1px;
+  padding: 40px;
+}
+
+.effect-16 {
+  border: 0;
+  padding: 4px 0;
+  border-bottom: 1px solid rgb(112, 112, 112);
+  background-color: transparent;
+}
+
+.effect-16 ~ .focus-border {
   position: absolute;
-  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: #15a0e1;
+  transition: 0.4s;
+}
+.effect-16:focus ~ .focus-border,
+.has-content.effect-16 ~ .focus-border {
+  width: 100%;
+  transition: 0.4s;
+}
+.effect-16 ~ label {
+  position: absolute;
   left: 0;
   width: 100%;
-  height: 100%;
-  display: none;
-  color: #FFF;
+  top: 9px;
+  color: #15a0e1;
+  transition: 0.3s;
+  z-index: -1;
+  letter-spacing: 0.5px;
 }
-.marco:hover .after {
-  display: block;
-  background: rgba(0, 0, 0, .6);
-  border-radius: 50%;
-}
-
-.overlay{
-  display: flexbox;
-  justify-content: center;
-  top: 0%;
-  left: 0%;
-  transform: translate(0%, 90%);
+.effect-16:focus ~ label,
+.has-content.effect-16 ~ label {
+  top: -16px;
+  font-size: 12px;
+  color: #15a0e1;
+  transition: 0.3s;
 }
 
-
+input{
+color: #fff;
+}

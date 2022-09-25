@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Cliente } from 'src/app/feature/dashboard/shared/model/cliente';
 import { ClienteService } from 'src/app/feature/dashboard/shared/service/cliente.service';
@@ -26,8 +26,8 @@ export class ModificarUsuarioComponent implements OnInit {
       this.router.navigate(['']);
     }
     this.userForm = this.builder.group({
-      nombre: '',
-      apellidos: '',
+      nombre: ['', [Validators.pattern('^[a-zA-Z ]*$')]],
+      apellidos: ['', [Validators.pattern('^[a-zA-Z ]*$')]],
       cedula: '',
       email: '',
       telefono: '',

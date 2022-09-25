@@ -27,6 +27,19 @@ export class ClienteService {
     );
   }
 
+  consultarClientes(): Observable<Cliente[]>{
+    return this.httpClient.get<Cliente[]>(`${this.url}api/cliente/consultarClientes`).pipe(
+      catchError(e => {
+        Swal.fire(
+          'Error al consultar el Cliente',
+          e.error,
+          'error'
+        );
+        return throwError(e);
+      })
+    );
+  }
+
   guardarCliente(cliente: Cliente): Observable<Cliente>{
     return this.httpClient.post<Cliente>(`${this.url}api/cliente/guardarCliente`, cliente).pipe(
       catchError(e => {

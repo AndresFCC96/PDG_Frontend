@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { SpinnerService } from 'src/app/core/services/spinner.service';
+import { CategoriaService } from 'src/app/feature/dashboard/shared/service/categoria.service';
 import { Producto } from 'src/app/feature/productos/shared/model/producto';
 import { ProductoService } from 'src/app/feature/productos/shared/service/producto.service';
+import Swal from 'sweetalert2';
+import { Categoria } from '../../shared/model/categoria';
 
 @Component({
   selector: 'app-subastas',
@@ -14,8 +17,10 @@ export class SubastasComponent implements OnInit {
   loggeado: boolean;
   nombre: string;
   productos: Producto[];
+  categorias: Categoria[];
   opcion: number = 1;
   productosSize: number = 0;
+  categoriaSeleccionada: string;
 
   filtros = [
     { opcion: "Filtro por default", value: 1},
@@ -26,6 +31,7 @@ export class SubastasComponent implements OnInit {
   ]
 
   constructor(private productoService: ProductoService,
+              private categoriaService: CategoriaService,
               private router: Router) { }
 
   ngOnInit(): void {
@@ -62,9 +68,10 @@ export class SubastasComponent implements OnInit {
   cargarProductos(): void{
     this.productoService.consultarProductos().subscribe(
       productos => {
-        this.productos = productos;
-        (productos.length != undefined && productos.length > 0) ? this.productosSize = this.productos.length : this.productosSize = 0;
-
+        if(productos){
+          this.productos = productos;
+          (productos.length != undefined && productos.length > 0) ? this.productosSize = this.productos.length : this.productosSize = 0;
+        }
       }
     )
   }
@@ -111,6 +118,31 @@ export class SubastasComponent implements OnInit {
     }
   }
 
+  filtrarPorCategoria(categoria: string){
+    console.log(categoria);
+
+    this.productoService.consultarProductoPorCategoria(categoria).subscribe(
+      producto => {
+        if(producto){
+          this.productos = producto;
+        }
+      }
+    )
+    Swal.fire({
+      title: 'No existen productos en la categoria ' + categoria,
+      width: 600,
+      padding: '3em',
+      color: '#716add',
+      background: '#fff url(/images/trees.png)',
+      backdrop: `
+        rgba(0,0,123,0.4)
+        url("https://raw.githubusercontent.com/gist/brudnak/aba00c9a1c92d226f68e8ad8ba1e0a40/raw/e1e4a92f6072d15014f19aa8903d24a1ac0c41a4/nyan-cat.gif")
+        left top
+        no-repeat
+      `
+    })
+  }
+
   limpiarFiltros(): void{
     this.cargarProductos();
   }
@@ -120,6 +152,31 @@ export class SubastasComponent implements OnInit {
       queryParams: {
           nombre: producto.nombre,
       },
-  });
+    });
+  }
+
+  obtenerCategorias() {
+    this.categoriaService.consultarCategorias().subscribe(categorias => {
+      if(categorias){
+        this.categorias = categorias;
+      }
+    })
+  }
+
+  async seleccionarCategoriaFiltro(){
+    const categorias = [];
+    this.obtenerCategorias();
+    this.categorias.forEach(categoria => {if(categoria.nombre !== 'Arte' && categoria.nombre !== 'Cripto' && categoria.nombre !== 'Tecnologia' && categoria.nombre !== 'Antiguedades' && categoria.nombre !== 'Ropa y diseño de modas'){categorias.push( categoria.nombre)}});
+    const { value: valor } = await Swal.fire({
+      title: 'Seleccionar una categoria',
+      input: 'select',
+      inputOptions: {categorias},
+      inputPlaceholder: 'A continuacion selecciona la categoria ',
+      showCancelButton: true
+    })
+
+    if (valor) {
+      this.filtrarPorCategoria(categorias[valor]);
+    }
   }
 }

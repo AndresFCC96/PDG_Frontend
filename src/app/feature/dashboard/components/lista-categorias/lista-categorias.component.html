@@ -1,0 +1,63 @@
+<app-navbar></app-navbar>
+
+<div class="container">
+  <div class="profile-box">
+    <app-dashboard></app-dashboard>
+
+    <div class="card">
+      <div class="table-title">
+          <h2>Lista de categorias</h2>
+      </div>
+      <div class="table-concept"><input class="table-radio" type="radio" name="table_radio" id="table_radio_0" checked="checked" />
+          <div class="table-display">
+            <a [routerLink]="['/addCategoria']" class="btn btn-sm pull-left" style="background-color: white;"><i class="fa fa-plus-circle"></i> Añadir categoria</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            Mostrando {{sizeCategorias}} resultados
+          </div>
+          <table>
+              <thead>
+                  <tr>
+                      <th>NOMBRE</th>
+                      <th>ESTADO</th>
+                      <th>ACCIONES</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr *ngFor="let categoria of categorias | slice: (page-1) * pageSize : page * pageSize">
+                      <td>{{categoria.nombre}}</td>
+                      <td *ngIf="categoria.estado === 'A'; else elseBlock">Activo</td>
+                      <ng-template #elseBlock>
+                        <td>Inactivo</td>
+                      </ng-template>
+                      <td *ngIf="categoria.nombre === 'Arte' || categoria.nombre === 'Cripto' || categoria.nombre === 'Tecnologia' || categoria.nombre === 'Antiguedades' || categoria.nombre === 'Ropa y diseño de modas'; else elseBlock2">
+                        <button mat-fab  title="Cambiar nombre"  disabled="">
+                            <mat-icon>change_circle</mat-icon>
+                        </button>&nbsp;
+                        <button mat-fab color="warn" title="Eliminar categoria" disabled="">
+                            <mat-icon>delete</mat-icon>
+                        </button>
+                      </td>
+                      <ng-template #elseBlock2>
+                        <td>
+                          <button mat-fab  title="Cambiar nombre" style="background-color: teal;" (click)="cambiarNombreCategoria(categoria)">
+                              <mat-icon>change_circle</mat-icon>
+                          </button>&nbsp;
+                          <button mat-fab color="warn" title="Eliminar categoria" (click)="eliminarCategoria(categoria)">
+                              <mat-icon>delete</mat-icon>
+                          </button>
+                        </td>
+                      </ng-template>
+                  </tr>
+
+              </tbody>
+
+          </table>
+          <ngb-pagination
+          class="paginador"
+          [(page)]="page"
+          [pageSize]="pageSize"
+          [collectionSize]="sizeCategorias"></ngb-pagination>
+      </div>
+  </div>
+
+    </div>
+  </div>

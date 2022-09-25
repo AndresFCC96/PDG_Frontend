@@ -1,7 +1,7 @@
 .container {
   height: calc(100% - 80px);
   overflow: hidden;
-  background: url(../../../../../assets/Fondos/undraw_visionary_technology_re_jfp7.svg);
+  background: url(../../../../../assets/Fondos/undraw_coffee_with_friends_3cbj.svg);
   background-position: center;
   background-size: cover;
   position: absolute;
@@ -369,7 +369,6 @@ body {
   margin-left: 10px;
   margin-right: 10px;
 }
-
 
 .paginador{
   position: fixed;

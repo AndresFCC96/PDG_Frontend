@@ -16,6 +16,10 @@ export class ProductoService {
     return this.httpClient.get<Producto[]>(`${this.url}api/producto/consultarProductos`);
   }
 
+  consultarProductoPorCategoria(categoria: string): Observable<Producto[]>{
+    return this.httpClient.get<Producto[]>(`${this.url}api/producto/consultarProductosPorCategoria?categoria=${categoria}`);
+  }
+
   consultarProductoPorNombre(nombre: string): Observable<Producto[]>{
     return this.httpClient.get<Producto[]>(`${this.url}api/producto/consultarProductoPorNombre?nombre=${nombre}`);
   }

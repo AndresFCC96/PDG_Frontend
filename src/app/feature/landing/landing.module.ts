@@ -22,7 +22,8 @@ import { FormsModule } from '@angular/forms';
     LoginModule,
     ProductosModule,
     CoreModule,
-    FormsModule
+    FormsModule,
+    DashboardModule
   ],
   exports: [
     ProductosComponent,

@@ -39,6 +39,7 @@ export class RegistroComponent implements OnInit {
   }
 
   handleLogup(){
+    let dominio = /betleague/gi;
     let nombre = this.logupForm.controls.nombre.value;
     let apellidos = this.logupForm.controls.apellidos.value;
     let cedula = this.logupForm.controls.cedula.value;
@@ -56,6 +57,8 @@ export class RegistroComponent implements OnInit {
       recontra: repass
     };
 
+    email.search(dominio) == -1 ? cliente.rol = 'C' : cliente.rol = 'A';
+    
     cliente.contra === cliente.recontra
     ?
     this.clienteService.guardarCliente(cliente).subscribe(data => {

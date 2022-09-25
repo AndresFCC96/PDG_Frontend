@@ -17,8 +17,17 @@
       <ng-template #elseBlock>
         <label>¡Hola! {{cliente.nombre}}
           <button mat-button [matMenuTriggerFor]="menu"><mat-icon>more_vert</mat-icon></button>
-          <mat-menu #menu="matMenu">
-            <button mat-menu-item [routerLink]="['Dashboard/userProfile']">Ver cuenta</button>
+          <mat-menu #menu="matMenu" >
+            <!-- Anclas clientes -->
+            <button mat-menu-item [routerLink]="['Dashboard/userProfile']" *ngIf="rol === 'C'">Ver perfil</button>
+            <button mat-menu-item [routerLink]="['Dashboard/editUserInfo']" *ngIf="rol === 'C'">Modificar datos</button>
+            <button mat-menu-item [routerLink]="['addProduct']" *ngIf="rol === 'C'">Subastar un producto</button>
+            <button mat-menu-item [routerLink]="['/paymentDetails']" *ngIf="rol === 'C'">Añadir metodos de pago</button>
+            <button mat-menu-item [routerLink]="['/Dashboard/metodosList']" *ngIf="rol === 'C'">Ver metodos de pago</button>
+            <!-- Anclas administradores -->
+            <button mat-menu-item [routerLink]="['/usuarioList']" *ngIf="rol === 'A'">Ver usuarios</button>
+            <button mat-menu-item [routerLink]="['/Dashboard/subastasList']" *ngIf="rol === 'A'">Ver subastas</button>
+            <button mat-menu-item [routerLink]="['/Dashboard/addCategoria']" *ngIf="rol === 'A'">Crear categoria</button>
             <button mat-menu-item (click)="cerrarSesion()">Cerrar sesion</button>
           </mat-menu>
         </label>

@@ -6,8 +6,8 @@
     <form [formGroup]="userForm" class="user-form">
       <div class="col-3 input-effect">
         <p class="atributo">Nombre</p>
-        <input class="effect-16 colorTexto" formControlName="nombre" type="text" placeholder={{cliente.nombre}} minlength="8"
-          maxlength="25" required>
+        <input ngModel pattern="[a-zA-Z ]*" class="effect-16 colorTexto" formControlName="nombre" type="text" placeholder={{cliente.nombre}} minlength="8"
+          maxlength="25"  required>
         <span class="focus-border"></span>
       </div>
 

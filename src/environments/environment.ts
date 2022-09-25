@@ -16,7 +16,8 @@ export const environment = {
     measurementId: 'G-B6TRLTQLWN',
   },
   production: false,
-  UrlBase: 'https://betleague-backend.herokuapp.com',
+  // UrlBase: 'https://betleague-backend.herokuapp.com',
+  UrlBase: 'http://localhost:2020',
   isLogged: false,
 };
 

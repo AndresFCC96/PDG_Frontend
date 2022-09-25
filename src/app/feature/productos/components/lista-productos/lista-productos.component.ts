@@ -33,7 +33,7 @@ export class ListaProductosComponent implements OnInit {
       this.router.navigate(['']);
     }
     this.cliente = this.obtenerCliente();
-    this.obtenerListaDeProductosPorAutor();
+    this.obtenerListaDeProductos();
   }
 
   obtenerCliente(): Cliente {
@@ -47,11 +47,17 @@ export class ListaProductosComponent implements OnInit {
     return cliente;
   }
 
-  obtenerListaDeProductosPorAutor(){
+  obtenerListaDeProductos(){
     let autor = this.cliente.nombre + ' ' + this.cliente.apellidos;
-    this.productoService.consultarProductoPorAutor(autor).subscribe(data => {
+
+    this.cliente.rol === 'C'
+    ? this.productoService.consultarProductoPorAutor(autor).subscribe(data => {
         this.productos = data;
         this.sizeProductos = this.productos.length;
+    })
+    : this.productoService.consultarProductos().subscribe(listaProductos => {
+      this.productos = listaProductos;
+      this.sizeProductos = this.productos.length;
     })
 
     if(this.sizeProductos === undefined){

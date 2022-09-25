@@ -6,7 +6,7 @@
 
     <div class="card">
       <div class="table-title">
-          <h2>Lista de productos</h2>
+          <h2>Lista de productos subastados</h2>
       </div>
       <div class="table-concept"><input class="table-radio" type="radio" name="table_radio" id="table_radio_0" checked="checked" />
           <div class="table-display">Mostrando {{sizeProductos}} resultados</div>
@@ -36,8 +36,8 @@
                         <td>Inactivo</td>
                       </ng-template>
                       <td>
-                        <button mat-fab color="primary" title="Descargar archivo" (click)="descargarArchivoProducto(producto)">
-                            <mat-icon>download</mat-icon>
+                        <button mat-fab color="warn" title="Descargar archivo" (click)="descargarArchivoProducto(producto)">
+                            <mat-icon>delete</mat-icon>
                         </button>
                       </td>
                   </tr>

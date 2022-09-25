@@ -24,6 +24,9 @@ import { SpinnerService } from 'src/app/core/services/spinner.service';
 import { FirebaseUploadsService } from 'src/app/core/services/firebase-uploads.service';
 import { MetodoDePagoService } from '../metodos-de-pago/shared/service/metodo-de-pago.service';
 import { ScriptService } from '../metodos-de-pago/shared/service/script.service';
+import { ListaUsuariosComponent } from './components/lista-usuarios/lista-usuarios.component';
+import { CrearCategoriaComponent } from './components/crear-categoria/crear-categoria.component';
+import { ListaCategoriasComponent } from './components/lista-categorias/lista-categorias.component';
 
 
 @NgModule({
@@ -37,7 +40,10 @@ import { ScriptService } from '../metodos-de-pago/shared/service/script.service'
     NubeComponent,
     ListaMetodosComponent,
     ModificarMetodosComponent,
-    DashboardComponent
+    DashboardComponent,
+    ListaUsuariosComponent,
+    CrearCategoriaComponent,
+    ListaCategoriasComponent
   ],
   imports: [
     CommonModule,

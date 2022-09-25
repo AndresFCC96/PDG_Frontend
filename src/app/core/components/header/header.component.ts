@@ -10,6 +10,7 @@ export class HeaderComponent implements OnInit {
 
   cliente: Cliente;
   loggeado = false;
+  rol: string = '';
 
   constructor() { }
 
@@ -18,17 +19,14 @@ export class HeaderComponent implements OnInit {
   }
 
   obtenerCliente(): Cliente {
-
     let data: string;
     let cliente: Cliente;
-
     data = localStorage.getItem('persona');
-
     if(data){
       cliente = JSON.parse(data);
       this.loggeado = true;
+      this.rol = cliente.rol;
     }
-
     return cliente;
   }
 

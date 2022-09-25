@@ -4,16 +4,21 @@
     <div class="menu">
       <div>
         <div>
-          <ul>
+          <!-- Anclas clientes -->
+          <ul *ngIf="rol === 'C'">
             <li><a href="#">Inicio</a></li>
-            <li><a href="#" [routerLink]="['/Dashboard/editUserInfo']" >Modificar datos</a></li>
+            <li><a href="#" [routerLink]="['/Dashboard/editUserInfo']">Modificar datos</a></li>
             <li><a href="#" [routerLink]="['/addProduct']">Subastar un producto</a></li>
-            <li><a href="#" [routerLink]="['/Dashboard/addDireccion']">Crear direccion</a></li>
-            <li><a href="#" [routerLink]="['/Dashboard/direccionesList']">Ver lista de direcciones</a></li>
-            <!-- <li><a href="#" [routerLink]="['/listProduct']">Ver mis compras</a></li> -->
-            <!-- <li><a href="#" [routerLink]="['/Dashboard/cloud']">Ver mis archivos</a></li> -->
-            <!-- <li><a href="#" [routerLink]="['/paymentDetails']">Añadir nuevo metodo de pago</a></li> -->
-            <!-- <li><a href="#" [routerLink]="['/Dashboard/metodosList']">Ver mis metodos de pago</a></li> -->
+            <li><a href="#" [routerLink]="['/listProduct']">Ver mis compras</a></li>
+            <li><a href="#" [routerLink]="['/paymentDetails']">Añadir nuevo metodo de pago</a></li>
+            <li><a href="#" [routerLink]="['/Dashboard/metodosList']">Ver mis metodos de pago</a></li>
+          </ul>
+          <!-- Anclas administradores -->
+          <ul *ngIf="rol === 'A'">
+            <li><a href="#">Inicio</a></li>
+            <li><a href="#" [routerLink]="['/Dashboard/usuarioList']">Ver usuarios</a></li>
+            <li><a href="#" [routerLink]="['/listProduct']">Ver subastas</a></li>
+            <li><a href="#" [routerLink]="['/listaCategoria']">Ver categorias</a></li>
           </ul>
         </div>
       </div>

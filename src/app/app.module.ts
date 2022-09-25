@@ -14,7 +14,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { HomeComponent } from './feature/home/home.component';
 import { LandingModule } from './feature/landing/landing.module';
 import { provideStorage,getStorage } from '@angular/fire/storage';
-import { SpinnerService } from './core/services/spinner.service';
 import { SpinnerInterceptor } from './core/interceptors/spinner.interceptor';
 @NgModule({
   declarations: [
