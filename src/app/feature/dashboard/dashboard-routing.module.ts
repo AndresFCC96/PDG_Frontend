@@ -10,6 +10,7 @@ import { ListaUsuariosComponent } from './components/lista-usuarios/lista-usuari
 import { ModificarUsuarioComponent } from './components/modificar-usuario/modificar-usuario.component';
 import { NubeComponent } from './components/nube/nube.component';
 import { PerfilUsuarioComponent } from './components/perfil-usuario/perfil-usuario.component';
+import { TipoSubastaComponent } from './components/tipo-subasta/tipo-subasta.component';
 
 const routes: Routes = [
   {path: "userProfile", component: PerfilUsuarioComponent},
@@ -22,6 +23,7 @@ const routes: Routes = [
   {path: "usuarioList", component: ListaUsuariosComponent},
   {path: "addCategoria", component: CrearCategoriaComponent},
   {path: "listaCategoria", component: ListaCategoriasComponent},
+  {path: "tipoSubasta", component: TipoSubastaComponent},
 ];
 
 @NgModule({

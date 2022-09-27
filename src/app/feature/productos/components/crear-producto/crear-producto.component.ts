@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -7,7 +8,9 @@ import {
   ref,
   uploadBytesResumable,
 } from 'firebase/storage';
+import { Categoria } from 'src/app/feature/dashboard/shared/model/categoria';
 import { Cliente } from 'src/app/feature/dashboard/shared/model/cliente';
+import { CategoriaService } from 'src/app/feature/dashboard/shared/service/categoria.service';
 import { Producto } from 'src/app/feature/productos/shared/model/producto';
 import { ProductoService } from 'src/app/feature/productos/shared/service/producto.service';
 import Swal from 'sweetalert2';
@@ -21,17 +24,21 @@ export class CrearProductoComponent implements OnInit {
   loginForm: FormGroup;
   cliente: Cliente;
   producto: Producto;
+  categorias: Categoria[];
   loggeado = false;
   rutaFoto: string;
   rutaArchivo: string;
   foto: any;
   archivo: any;
   paso: number = 1;
+  tipoDeSubasta: string;
+
 
   constructor(
     private builder: FormBuilder,
     private productoService: ProductoService,
-    private router: Router
+    private router: Router,
+    private categoriaService: CategoriaService
   ) {}
 
   ngOnInit(): void {
@@ -40,8 +47,13 @@ export class CrearProductoComponent implements OnInit {
       categoria: '',
       descripcion: '',
       valoracionAutor: '',
+      fecha: '',
+      tiempo: ''
     });
     this.cliente = this.obtenerCliente();
+    this.tipoDeSubasta = localStorage.getItem('tipoDeSubasta');
+    this.obtenerCategorias();
+
   }
 
   obtenerCliente(): Cliente {
@@ -55,24 +67,46 @@ export class CrearProductoComponent implements OnInit {
     return cliente;
   }
 
+  obtenerCategorias() {
+    this.categoriaService.consultarCategorias().subscribe(categorias => {
+      if(categorias){
+        this.categorias = categorias;
+      }
+    })
+  }
+
+  obtenerMes(event: any){
+    this.tipoDeSubasta = event.target.value;
+  }
+
   guardarProducto(): void {
+    const datepipe: DatePipe = new DatePipe('en-US')
     let nombre = this.loginForm.controls.nombre.value;
     let autor = this.cliente.nombre + ' ' + this.cliente.apellidos;
     let categoria = this.loginForm.controls.categoria.value;
     let descripcion = this.loginForm.controls.descripcion.value;
+    let fecha = this.loginForm.controls.fecha.value;
+    let tiempo = this.loginForm.controls.tiempo.value;
     let valoracionAutor = this.loginForm.controls.valoracionAutor.value;
+    let formattedDate = datepipe.transform(fecha, 'dd/MM/YYYY');
     let producto: Producto = {
       nombre: nombre,
       autor: autor,
       categoria: categoria,
       foto: this.rutaFoto,
       archivo: this.rutaArchivo,
+      tipoDeSubasta: this.tipoDeSubasta,
+      fechaSubida: formattedDate,
+      tiempo: tiempo,
       descripcion: descripcion,
       valoracionAutor: valoracionAutor
     }
+    console.log(producto);
+
     this.productoService.guardarProducto(producto).subscribe((data) => {
       if (data) {
         Swal.fire('Excelente!', 'Producto creado con exito!', 'success');
+        localStorage.removeItem('tipoDeSubasta')
         this.router.navigate(['Subastas']);
       }
     });
@@ -178,6 +212,6 @@ export class CrearProductoComponent implements OnInit {
   }
 
   siguiente() {
-    this.paso < 2 ? (this.paso += 1) : (this.paso = 2);
+    this.paso < 3 ? (this.paso += 1) : (this.paso = 2);
   }
 }

@@ -3,10 +3,12 @@ export interface Producto {
   nombre: string;
   autor: string;
   categoria: string;
-  fechaSubida?: Date;
+  fechaSubida?: string;
+  tiempo?: number;
   descripcion: string;
   foto?: string;
   archivo?: string;
+  tipoDeSubasta?: string;
   valoracionAutor: number;
   subastaIdsubasta?: number;
   estado?: string;

@@ -17,7 +17,10 @@
 
         <div class="col-3 ">
           <p class="atributo">Categoria</p>
-          <input class="effect-16" formControlName="categoria" type="text" minlength="8" maxlength="25" required>
+          <!-- <input class="effect-16" formControlName="categoria" type="text" minlength="8" maxlength="25" required> -->
+          <mat-select formControlName="categoria">
+            <mat-option *ngFor="let categoria of categorias" [value]="categoria.idcategoria">{{categoria.nombre}}</mat-option>
+          </mat-select>
         </div>
         <div class="col-3 input-effect">
           <p class="atributo">Descripcion</p>
@@ -35,6 +38,26 @@
       </ng-container>
 
       <ng-container *ngIf="paso===2">
+
+        <div class="col-3 input-effect">
+          <p class="atributo">Fecha</p>
+          <input class="effect-16" formControlName="fecha" type="date" minlength="8" maxlength="25"
+            required>
+        </div>
+
+        <div class="col-3 input-effect">
+          <p class="atributo">Horas en las que la subasta va a estar abierta (No mas de 24 horas)</p>
+          <input class="effect-16" formControlName="tiempo" type="number" minlength="8" maxlength="25"
+            required>
+        </div>
+
+        <div class="containerBotones">
+          <button class="submit button botonesPost" (click)="anterior()">Anterior</button>&nbsp;&nbsp;&nbsp;&nbsp;
+          <button class="submit button botonesPost" (click)="siguiente()">Siguiente</button>
+        </div>
+      </ng-container>
+
+      <ng-container *ngIf="paso === 3">
         <br />
         <label>Imagen del producto</label>
         <div class="marco">
@@ -54,7 +77,7 @@
             </div>
           </div>
         </div>
-
+        <!--
         <ng-container *ngIf="!archivo">
           <br><br>
           <label>Archivo</label>
@@ -62,11 +85,11 @@
             <input type="file" (change)="obtenerArchivo($event)" class="file">
           </div>
           <br /><br />
-          <div class="containerBotones">
-            <button class="submit button botonesPost" (click)="anterior()">Anterior</button> <br>
-            <button class="submit button botonesPost" (click)="guardarProducto(); subirArchivo()">Crear Producto</button> <br>
-          </div>
-        </ng-container>
+        </ng-container> -->
+        <div class="containerBotones">
+          <button class="submit button botonesPost" (click)="anterior()">Anterior</button> <br>
+          <button class="submit button botonesPost" (click)="guardarProducto(); subirArchivo()">Crear Producto</button> <br>
+        </div>
 
         <ng-container *ngIf="archivo">
           <div class="archivo-subido" *ngIf="archivo">
@@ -80,10 +103,7 @@
           </div>
         </ng-container>
 
-
-
       </ng-container>
-
     </form>
 
   </div>

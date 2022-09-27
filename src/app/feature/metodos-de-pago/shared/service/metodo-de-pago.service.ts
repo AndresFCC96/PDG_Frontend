@@ -14,16 +14,7 @@ export class MetodoDePagoService {
   constructor(public httpClient: HttpClient) { }
 
   consultarMetodosDePagoPorCliente(cedula: number): Observable<MetodoDePago[]>{
-    return this.httpClient.get<MetodoDePago[]>(`${this.url}api/metodoDePago/consultarMetodosDePagosPorCedula?cedula=${cedula}`).pipe(
-      catchError(e => {
-        Swal.fire(
-          'Error al consultar los metodos de pago',
-          e.error,
-          'error'
-        );
-        return throwError(e);
-      })
-    );
+    return this.httpClient.get<MetodoDePago[]>(`${this.url}api/metodoDePago/consultarMetodosDePagosPorCedula?cedula=${cedula}`);
   }
 
   guardarMetodoDePago(metodo: MetodoDePago): Observable<MetodoDePago>{

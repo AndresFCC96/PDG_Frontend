@@ -9,7 +9,12 @@
   align-items: center;
   justify-content: center;
   justify-items: center;
-  margin-inline-start: 14%;
+  /* Centrado del div */
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .profile-box {
@@ -28,7 +33,7 @@
   top: 40px;
 }
 
-.profile-box .buttonw {
+.profile-box .button {
   background: #fff;
   color: #0769e9;
   border: none;
@@ -41,8 +46,21 @@
   margin-top: 5%;
   font-weight: 600;
   font-size: 16px;
-  width: 10px;
-  height: 10px;
+}
+
+.profile-box .button {
+  background: #fff;
+  color: #0769e9;
+  border: none;
+  outline: none;
+  box-shadow: 0 5px 10px rgba(7, 81, 241, 0.5);
+  padding: 15px 60px;
+  cursor: pointer;
+  border-radius: 30px;
+  margin-bottom: -50px;
+  margin-top: 5%;
+  font-weight: 600;
+  font-size: 16px;
 }
 
 .profile-box h3 {
@@ -226,7 +244,8 @@ body {
   display: none;
 }
 .table-concept .table-radio:checked + .table-display {
-  display: block;
+  display: flex;
+  justify-content: flex-end;
 }
 .table-concept .table-radio:checked + .table-display + table {
   width: 100%;
@@ -335,15 +354,31 @@ body {
   margin: 0;
   padding: 0;
 }
+.button-container {
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: flex-end;
+}
+.button-container span {
+  color: #d80c0c;
+  text-align: right;
+  min-height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 10px;
+  margin-right: 10px;
+}
 
 
 .paginador{
-  position: relative;
+  position: fixed;
   justify-content: center;
   display: flex;
-}
-
-.botones{
-  width: 10px;
-  height: 50px;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
 }

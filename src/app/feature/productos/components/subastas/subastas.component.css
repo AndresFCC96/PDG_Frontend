@@ -11,6 +11,11 @@ html{
 	height: 100%;
 }
 
+#top{
+  margin-top: -9%;
+  margin-left: 4%;
+}
+
 .btn{
 	font-family: 'Kanit',sans-serif;
 }
@@ -364,4 +369,74 @@ a.explore-link:hover{
   height: 500px;
 }
 
+.botonProximas {
+  align-items: center;
+  align-self: center;
+  text-decoration: none;
+  position: absolute;
+  border: none;
+  font-size: 20px;
+  font-family: inherit;
+  color: #fff;
+  width: 12em;
+  height: 3em;
+  line-height: 2em;
+  text-align: center;
+  background: linear-gradient(90deg,#03a9f4,#f441a5,#ffeb3b,#03a9f4);
+  background-size: 300%;
+  border-radius: 30px;
+  z-index: 1;
+ }
 
+ .botonProximas:hover {
+  animation: ani 8s linear infinite;
+  border: none;
+ }
+
+ @keyframes ani {
+  0% {
+   background-position: 0%;
+  }
+
+  100% {
+   background-position: 400%;
+  }
+ }
+
+ .botonProximas:before {
+  content: '';
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  right: -5px;
+  bottom: -5px;
+  z-index: -1;
+  background: linear-gradient(90deg,#03a9f4,#f441a5,#ffeb3b,#03a9f4);
+  background-size: 400%;
+  border-radius: 35px;
+  transition: 1s;
+ }
+
+ .botonProximas:hover::before {
+  filter: blur(20px);
+ }
+
+ .botonProximas:active {
+  background: linear-gradient(32deg,#03a9f4,#f441a5,#ffeb3b,#03a9f4);
+ }
+
+ .tooltip-text{
+  visibility: hidden;
+  position: absolute;
+  z-index: 1;
+  width: 100px;
+  color: white;
+  font-size: 12px;
+  background-color: #192733;
+  border-radius: 10px;
+  padding: 10px 15px 10px 15px;
+}
+
+.hover-text:hover .tooltip-text{
+  visibility: visible;
+}

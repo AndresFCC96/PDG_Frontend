@@ -27,6 +27,7 @@ import { ScriptService } from '../metodos-de-pago/shared/service/script.service'
 import { ListaUsuariosComponent } from './components/lista-usuarios/lista-usuarios.component';
 import { CrearCategoriaComponent } from './components/crear-categoria/crear-categoria.component';
 import { ListaCategoriasComponent } from './components/lista-categorias/lista-categorias.component';
+import { TipoSubastaComponent } from './components/tipo-subasta/tipo-subasta.component';
 
 
 @NgModule({
@@ -43,7 +44,8 @@ import { ListaCategoriasComponent } from './components/lista-categorias/lista-ca
     DashboardComponent,
     ListaUsuariosComponent,
     CrearCategoriaComponent,
-    ListaCategoriasComponent
+    ListaCategoriasComponent,
+    TipoSubastaComponent
   ],
   imports: [
     CommonModule,

@@ -10,6 +10,12 @@
   align-items: center;
   justify-content: center;
   justify-items: center;
+  /* Centrado del div */
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .profile-box {
@@ -19,7 +25,7 @@
   color: #fff;
   position: absolute;
   border-radius: 20px;
-  height: 80%;
+  /* height: 80%; */
 }
 
 .product-pic {

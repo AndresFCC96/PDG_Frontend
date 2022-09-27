@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Cliente } from 'src/app/feature/dashboard/shared/model/cliente';
 import { ScriptService } from 'src/app/feature/metodos-de-pago/shared/service/script.service';
 import Swal from 'sweetalert2';
 import { Producto } from '../../shared/model/producto';
@@ -15,7 +16,10 @@ export class ProductoDetalleComponent implements OnInit {
   nombre: string;
   producto: Producto;
   query: Producto[];
+  cliente: Cliente;
   precioCliente: number;
+  nombreCompleto: string;
+  comparacio: boolean;
 
   constructor(
     protected jsServiceLoader: ScriptService,
@@ -29,10 +33,23 @@ export class ProductoDetalleComponent implements OnInit {
     });
     this.cargarProducto();
     this.cargaPaginaProducto();
+    this.cliente = this.obtenerCliente();
+    this.validarNombres();
   }
 
   ngOnDestroy(): void {
     this.jsServiceLoader.removeScript('detalleProducto');
+  }
+
+  obtenerCliente(): Cliente {
+    let data: string;
+    let cliente: Cliente;
+    data = localStorage.getItem('persona');
+    if (data) {
+      cliente = JSON.parse(data);
+      this.nombreCompleto = cliente.nombre + ' ' + cliente.apellidos;
+    }
+    return cliente;
   }
 
   cargarProducto() {
@@ -42,6 +59,12 @@ export class ProductoDetalleComponent implements OnInit {
         this.producto = this.query[0];
       }
     })
+  }
+
+  validarNombres(){
+    (this.nombreCompleto == this.producto.autor) && (this.nombreCompleto != undefined) && (this.nombreCompleto != null)? this.comparacio = true : this.comparacio = false;
+    console.log(this.comparacio);
+
   }
 
   cargaPaginaProducto() {

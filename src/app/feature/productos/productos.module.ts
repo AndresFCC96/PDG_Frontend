@@ -17,7 +17,7 @@ import { ProductoService } from './shared/service/producto.service';
 import { DashboardModule } from '../dashboard/dashboard.module';
 import { FirebaseUploadsService } from 'src/app/core/services/firebase-uploads.service';
 import { ProductoDetalleComponent } from './components/producto-detalle/producto-detalle.component';
-
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -38,7 +38,8 @@ import { ProductoDetalleComponent } from './components/producto-detalle/producto
     ReactiveFormsModule,
     NgbModule,
     DashboardModule,
-    MatChipsModule
+    MatChipsModule,
+    MatSelectModule
   ], exports: [
     SubastasComponent
   ], providers: [ ProductoService, FirebaseUploadsService ]

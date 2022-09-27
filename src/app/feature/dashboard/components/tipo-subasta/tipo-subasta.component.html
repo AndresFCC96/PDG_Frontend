@@ -1,0 +1,26 @@
+<app-navbar></app-navbar>
+
+<div class="container">
+  <div class="profile-box">
+
+    <div class="subasta">
+      <p class="agentes pulsate">Subasta</p>
+      <a  href="" [routerLink]="['/addProduct']">
+        <div class="hover-text" (click)="definirTipoDeSubasta(1)">
+            <span class="tooltip-text" id="left">En la subasta gana quien mas ofrezca</span>
+            <mat-icon class="botones flechaSubasta pulsate">arrow_upward</mat-icon>
+        </div>
+      </a>
+    </div>
+
+    <div class="bajasta">
+      <p class="agenteb pulsate">Bajasta</p>
+      <a  href="" [routerLink]="['/addProduct']">
+        <div class="hover-text" (click)="definirTipoDeSubasta(2)">
+            <span class="tooltip-text-bajasta">En la bajasta la persona que ofrece el producto puede escoger a quien se lo vende</span>
+            <mat-icon class="botones flechaBajasta pulsate">arrow_downward</mat-icon>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>

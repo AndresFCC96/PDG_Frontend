@@ -42,13 +42,18 @@
           </ul>
         </div>
 
-        <div class = "purchase-info">
+        <div class = "purchase-info" *ngIf="comparacio === true; else elseBlock2">
           <input type = "number" min = "0" [(ngModel)]='precioCliente' value = {{precioCliente}}>
           <button type = "button" class = "btn">
             Ofertar <i class = "fas fa-shopping-cart"></i>
           </button>
           <button type = "button" class = "btn" (click)="comparacion()">Comparar</button>
         </div>
+
+        <ng-template #elseBlock2>
+          <p>No puede ofertar en su propia subasta</p>
+          <p>{{producto.autor}}-{{comparacio}}</p>
+        </ng-template>
 
         <div class = "social-links">
           <mat-chip-list aria-label="Tags">

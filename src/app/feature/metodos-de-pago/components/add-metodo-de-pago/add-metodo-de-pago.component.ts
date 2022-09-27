@@ -74,6 +74,8 @@ export class AddMetodoDePagoComponent implements OnInit {
       year: yearM,
       ccv: ccvM,
     };
+    console.log(metodoDePago);
+    console.log(metodoDePago.ccv);
 
     this.metodoDePagoService
       .guardarMetodoDePago(metodoDePago)

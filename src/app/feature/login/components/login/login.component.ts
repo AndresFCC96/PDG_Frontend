@@ -48,11 +48,18 @@ s
       if(data){
         environment.isLogged = true;
         localStorage.setItem('persona', JSON.stringify(data));
-        this.router.navigate(['Dashboard/userProfile'], {
+        this.cliente = data;
+        this.cliente.estado === 'A'
+        ? this.router.navigate(['Dashboard/userProfile'], {
           queryParams: {
             data
           }
-        });
+        })
+        : Swal.fire(
+          'Error al iniciar sesion',
+          'Esta cuenta ha sido eliminada debido a que infringido las politicas de la compañia',
+          'error'
+        )
       }
     })
   }

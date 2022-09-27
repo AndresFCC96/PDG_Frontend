@@ -1,0 +1,201 @@
+mat-icon{
+  font-size:80px;
+  margin-left: -60px;
+}
+
+a{
+  text-decoration: none;
+}
+
+
+#left {
+  margin-top: 1%;
+  margin-left: -8%;
+}
+
+.container{
+  height: calc(100% - 80px);
+  width: 100%;
+  overflow: hidden;
+  object-fit: fill;
+  background: url(../../../../../assets/Fondos/Banknote_Monochromatic.svg);
+  background-size: cover;
+  background-repeat: repeat;
+  background-position: left;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  justify-items: center;
+  /* Centrado del div */
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+.profile-box {
+  width:800px;
+  height:500px;
+  background:#ffffff;
+  border-radius: 10%;
+  background:-moz-linear-gradient(-45deg, #e0dedf 50%, #e37d72 50%);
+  background:-webkit-gradient(linear, left top, right bottom, color-stop(50%,#e0dedf), color-stop(50%,#e37d72));
+  background:-webkit-linear-gradient(-45deg, #e0dedf 50%,#e37d72 50%);
+  background:-o-linear-gradient(-45deg, #e0dedf 50%,#e37d72 50%);
+  background:-ms-linear-gradient(-45deg, #e0dedf 50%,#e37d72 50%);
+  background:linear-gradient(148deg, rgb(2, 133, 232) 50%,#e37d72 50%);
+  filter:progid:DXImageTransform.Microsoft.gradient( startColorstr='#e0dedf', endColorstr='#e37d72',GradientType=1 );
+  display: inline-flex;
+  flex-direction: column;
+}
+
+.subasta{
+  width: 100%;
+  height: 50%;
+  margin-left: 20%;
+  padding-top: 8%;
+}
+
+.bajasta{
+  width: 100%;
+  height: 50%;
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+
+}
+
+.botones{
+  color: #fff;
+  text-shadow:
+      0 0 7px rgb(0, 0, 0),
+      0 0 10px rgb(0, 0, 0),
+      0 0 21px rgb(0, 0, 0),
+      0 0 42px rgb(227, 125, 114),
+      0 0 82px rgb(227, 125, 114),
+      0 0 92px #fff,
+      0 0 102px #fff,
+      0 0 151px #fff;
+}
+
+.agentes{
+  color: #fff;
+  text-shadow:
+      0 0 7px rgb(0, 0, 0),
+      0 0 10px rgb(0, 0, 0),
+      0 0 21px rgb(0, 0, 0),
+      0 0 42px rgb(227, 125, 114),
+      0 0 82px rgb(227, 125, 114),
+      0 0 92px #fff,
+      0 0 102px #fff,
+      0 0 151px #fff;
+  display:block;
+  text-align:center;
+  width: 50%;
+  margin-top: 2%;
+  margin-left: -18%;
+  font-size: 2.6rem;
+}
+
+.agenteb{
+  color: #fff;
+  text-shadow:
+      0 0 7px rgb(0, 0, 0),
+      0 0 10px rgb(0, 0, 0),
+      0 0 21px rgb(0, 0, 0),
+      0 0 42px rgb(227, 125, 114),
+      0 0 82px rgb(227, 125, 114),
+      0 0 92px #fff,
+      0 0 102px #fff,
+      0 0 151px #fff;
+  display:block;
+  text-align:center;
+  width: 50%;
+  margin-top: -15%;
+  margin-left: 48%;
+  font-size: 2.6rem;
+}
+
+.flechaSubasta{
+  display:block;
+  text-align:center;
+  width: 50%;
+  margin-left: -18%;
+  font-size: 6.6rem;
+}
+
+.flechaBajasta{
+  display:block;
+  text-align:center;
+  width: 50%;
+  margin-left: 48%;
+  font-size: 6.6rem;
+
+}
+
+.pulsate {
+  animation: pulsate 1.5s infinite alternate;
+}
+
+/* tooltip */
+.tooltip-text-bajasta{
+  visibility: hidden;
+  position: absolute;
+  z-index: 1;
+  width: 100px;
+  color: white;
+  font-size: 12px;
+  background-color: #192733;
+  border-radius: 10px;
+  padding: 10px 15px 10px 15px;
+  margin-left: 48%;
+}
+
+.tooltip-text{
+  visibility: hidden;
+  position: absolute;
+  z-index: 1;
+  width: 100px;
+  color: white;
+  font-size: 12px;
+  background-color: #192733;
+  border-radius: 10px;
+  padding: 10px 15px 10px 15px;
+}
+
+.hover-text:hover .tooltip-text-bajasta,
+.hover-text:hover .tooltip-text{
+  visibility: visible;
+}
+@keyframes pulsate {
+
+  100% {
+
+      text-shadow:
+      0 0 4px #fff,
+      0 0 11px #fff,
+      0 0 19px #fff,
+      0 0 40px #e37d72,
+      0 0 80px #e37d72,
+      0 0 90px #e37d72,
+      0 0 100px #e37d72,
+      0 0 150px #e37d72;
+
+  }
+
+  0% {
+
+    text-shadow:
+    0 0 2px #fff,
+    0 0 4px #fff,
+    0 0 6px #fff,
+    0 0 10px #e37d72,
+    0 0 45px #e37d72,
+    0 0 55px #e37d72,
+    0 0 70px #e37d72,
+    0 0 80px #e37d72;
+
+}
+}

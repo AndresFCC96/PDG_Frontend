@@ -1,5 +1,8 @@
+import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { add } from 'date-fns';
+import { interval, Subscription, takeWhile } from 'rxjs';
 import { SpinnerService } from 'src/app/core/services/spinner.service';
 import { CategoriaService } from 'src/app/feature/dashboard/shared/service/categoria.service';
 import { Producto } from 'src/app/feature/productos/shared/model/producto';
@@ -21,6 +24,11 @@ export class SubastasComponent implements OnInit {
   opcion: number = 1;
   productosSize: number = 0;
   categoriaSeleccionada: string;
+  date: Date;
+  subscription$: Subscription;
+  fechaActual: string;
+  estadoSubastasProximas: boolean = false;
+  labelSubastas: string = 'Proximas subastas';
 
   filtros = [
     { opcion: "Filtro por default", value: 1},
@@ -39,6 +47,34 @@ export class SubastasComponent implements OnInit {
       this.loggeado = true;
     }
     this.cargarProductos();
+    this.obtenerCategorias();
+    this.counter();
+    const datepipe: DatePipe = new DatePipe('en-US')
+    let formattedDate = datepipe.transform(new Date, 'dd/MM/YYYY');
+    this.fechaActual = formattedDate;
+  }
+
+  ngOnDestroy() {
+    if (this.subscription$) {
+      this.subscription$.unsubscribe();
+    }
+  }
+
+  private counter() {
+    // fecha cualquiera inicializada con dos horas
+    this.date = new Date('2000-01-01 02:00:00');
+    // contador de las veces que el interval debe emitir
+    let segundosEnHoras = 2 * 60 * 60;
+    // interval que emite cada segundo
+    this.subscription$ = interval(1000)
+      // tomar un valor mientras aun queden segundos en la cuenta
+      .pipe(takeWhile(() => segundosEnHoras-- > 0))
+      .subscribe({
+        // restar un segundo a la fecha actual
+        next: () => (this.date = add(this.date, { seconds: -1 })),
+        // cuando la cuenta termine reiniciar el contador
+        complete: () => this.counter(),
+      });
   }
 
   opcionSeleccionada(value: number){
@@ -65,12 +101,42 @@ export class SubastasComponent implements OnInit {
     window.location.reload();
   }
 
+  // 1 opcion para las subastas del dia actual, 2 para las subastas de otros dias
+  calcularProductosMostrados(size: number, opcion: number){
+    let contador = size;
+    console.log(contador);
+    if(opcion === 1){
+      for (let index = 0; index < this.productos.length; index++) {
+        if(this.productos[index].fechaSubida !== this.fechaActual){contador--};
+      }
+    }else{
+      for (let index = 0; index < this.productos.length; index++) {
+        if(this.productos[index].fechaSubida === this.fechaActual){contador--};
+      };
+    }
+    this.productosSize = contador;
+    console.log(this.productosSize);
+  }
+
+  activarProximos(){
+    if(this.estadoSubastasProximas === true){
+      this.estadoSubastasProximas = false;
+      this.labelSubastas = 'Proximas subastas';
+      this.calcularProductosMostrados(this.productos.length, 1);
+    }else{
+      this.estadoSubastasProximas = true;
+      this.labelSubastas = 'Subastas del dia';
+      this.calcularProductosMostrados(this.productos.length, 2);
+    };
+  }
+
   cargarProductos(): void{
     this.productoService.consultarProductos().subscribe(
       productos => {
         if(productos){
           this.productos = productos;
-          (productos.length != undefined && productos.length > 0) ? this.productosSize = this.productos.length : this.productosSize = 0;
+          // (productos.length != undefined && productos.length > 0) ? this.productosSize = this.productos.length : this.productosSize = 0;
+          this.calcularProductosMostrados(this.productos.length, 1);
         }
       }
     )
@@ -123,24 +189,32 @@ export class SubastasComponent implements OnInit {
 
     this.productoService.consultarProductoPorCategoria(categoria).subscribe(
       producto => {
-        if(producto){
+          console.log(this.productos);
+
           this.productos = producto;
-        }
+
+      },
+      err => {
+        console.log(err)
+          Swal.fire({
+            title: err.error,
+            width: 600,
+            padding: '3em',
+            color: '#716add',
+            background: '#fff url(/images/trees.png)',
+            backdrop: `
+              rgba(0,0,123,0.4)
+              url("https://raw.githubusercontent.com/gist/brudnak/aba00c9a1c92d226f68e8ad8ba1e0a40/raw/e1e4a92f6072d15014f19aa8903d24a1ac0c41a4/nyan-cat.gif")
+              left top
+              no-repeat
+            `
+          })
       }
     )
-    Swal.fire({
-      title: 'No existen productos en la categoria ' + categoria,
-      width: 600,
-      padding: '3em',
-      color: '#716add',
-      background: '#fff url(/images/trees.png)',
-      backdrop: `
-        rgba(0,0,123,0.4)
-        url("https://raw.githubusercontent.com/gist/brudnak/aba00c9a1c92d226f68e8ad8ba1e0a40/raw/e1e4a92f6072d15014f19aa8903d24a1ac0c41a4/nyan-cat.gif")
-        left top
-        no-repeat
-      `
-    })
+
+    console.log(this.productos.length);
+
+
   }
 
   limpiarFiltros(): void{
@@ -165,7 +239,6 @@ export class SubastasComponent implements OnInit {
 
   async seleccionarCategoriaFiltro(){
     const categorias = [];
-    this.obtenerCategorias();
     this.categorias.forEach(categoria => {if(categoria.nombre !== 'Arte' && categoria.nombre !== 'Cripto' && categoria.nombre !== 'Tecnologia' && categoria.nombre !== 'Antiguedades' && categoria.nombre !== 'Ropa y diseño de modas'){categorias.push( categoria.nombre)}});
     const { value: valor } = await Swal.fire({
       title: 'Seleccionar una categoria',

@@ -28,11 +28,11 @@
           <div>&nbsp;</div>
           <div>&nbsp;</div>
 
-          <h2 class="blog-sidebar-title"><b>Filtros</b></h2>
+          <h2 class="blog-sidebar-title"><b>Filtrar</b></h2>
           <hr />
 
           <div class="input-group mb-3" >
-            <input type="text" [(ngModel)]="nombre" class="form-control" placeholder="Search" aria-label="Receipient's username"
+            <input type="text" [(ngModel)]="nombre" class="form-control" placeholder="Ingrese el nombre" aria-label="Nombre del producto"
               aria-describely="basic-addon2">
 
           </div>
@@ -42,17 +42,24 @@
 
           <div>&nbsp;</div>
           <div>&nbsp;</div>
+
+          <div class="hover-text">
+            <span class="tooltip-text" id="top">Presiona este boton para cambiar entre las subastas del dia y las proximas</span>
+            <button class="botonProximas" (click)="activarProximos()">{{labelSubastas}}</button><br><br><br><br>
+          </div>
+
           <h2 class="blog-sidebar-title"><b>Tags</b></h2>
-          <!-- <p class="product-sidebar-list"><b>#accessorios, #computo</b></p>
-          <p class="product-sidebar-list"><b>#diseño, #moda, #arte</b></p>
-          <p class="product-sidebar-list"><b>#colombiano, #latino</b></p> -->
+
           <mat-chip-list aria-label="Tags">
-            <mat-chip >Moda</mat-chip>
-            <mat-chip>Diseño</mat-chip>
-            <mat-chip>Accessorios</mat-chip>
-            <mat-chip >Computo</mat-chip>
-            <mat-chip>Colombiano</mat-chip>
-            <mat-chip>Latino</mat-chip>
+              <mat-chip>Moda</mat-chip>
+              <mat-chip>Arte</mat-chip>
+              <mat-chip>Cripto</mat-chip>
+              <mat-chip>Tecnologia</mat-chip>
+              <mat-chip>Antiguedades</mat-chip>
+              <mat-chip>Ropa y diseño de modas</mat-chip>
+              <mat-chip>Vehiculos</mat-chip>
+              <mat-chip>Consolas</mat-chip>
+              <mat-chip>Video</mat-chip>
           </mat-chip-list>
 
         </div>
@@ -82,19 +89,34 @@
           <div>&nbsp;</div>
 
           <div  class="row">
-            <div *ngFor="let producto of productos" class="col-sm-3 col-md-6 col-lg-4">
-              <div class="card">
-                <div class="card-body text-center">
-                  <img src={{producto.foto}} class="product-image">
-                  <h5 class="card-title"><b>{{producto.nombre}}</b></h5>
-                  <p class="card-text small">{{producto.descripcion}}</p>
-                  <p class="tags">Vendido por {{producto.autor}}</p>
-                  <p class="tags">Precio vendedor {{producto.valoracionAutor|currency:"COP":'symbol-narrow':'3.0'}}</p>
-                  <a class="btn btn-success button-text">Comprar</a>&nbsp;&nbsp;
-                  <a class="btn btn-success button-text" (click)="detalleProducto(producto)">Ver detalle</a>
+            <ng-container *ngFor="let producto of productos">
+              <div *ngIf="fechaActual === producto.fechaSubida && estadoSubastasProximas === false" class="col-sm-3 col-md-6 col-lg-4">
+                <div class="card" >
+                  <div class="card-body text-center">
+                    <img src={{producto.foto}} class="product-image">
+                    <h5 class="card-title"><b>{{producto.nombre}}</b></h5>
+                    <p class="card-text small">{{producto.descripcion}}</p>
+                    <p class="tags">Vendido por {{producto.autor}}</p>
+                    <p class="tags">Maximo actual {{producto.valoracionAutor|currency:"COP":'symbol-narrow':'3.0'}}</p>
+                    <a class="btn btn-success button-text">Comprar</a>&nbsp;&nbsp;
+                    <a class="btn btn-success button-text" (click)="detalleProducto(producto)">Ver detalle</a>
+                  </div>
                 </div>
               </div>
-            </div>
+
+              <div *ngIf="fechaActual !== producto.fechaSubida && estadoSubastasProximas === true" class="col-sm-3 col-md-6 col-lg-4">
+                <div class="card" >
+                  <div class="card-body text-center">
+                    <img src={{producto.foto}} class="product-image">
+                    <h5 class="card-title"><b>{{producto.nombre}}</b></h5>
+                    <p class="card-text small">{{producto.descripcion}}</p>
+                    <p class="tags">Vendido por {{producto.autor}}</p>
+                    <p class="tags">Precio inicial {{producto.valoracionAutor|currency:"COP":'symbol-narrow':'3.0'}}</p>
+                    <p class="tags">Abre el {{producto.fechaSubida}}</p>
+                  </div>
+                </div>
+              </div>
+            </ng-container>
           </div>
         </div>
       </div>
