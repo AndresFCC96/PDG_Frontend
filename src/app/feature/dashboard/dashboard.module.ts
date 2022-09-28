@@ -28,6 +28,7 @@ import { ListaUsuariosComponent } from './components/lista-usuarios/lista-usuari
 import { CrearCategoriaComponent } from './components/crear-categoria/crear-categoria.component';
 import { ListaCategoriasComponent } from './components/lista-categorias/lista-categorias.component';
 import { TipoSubastaComponent } from './components/tipo-subasta/tipo-subasta.component';
+import { OfertaProductoComponent } from './components/oferta-producto/oferta-producto.component';
 
 
 @NgModule({
@@ -45,7 +46,8 @@ import { TipoSubastaComponent } from './components/tipo-subasta/tipo-subasta.com
     ListaUsuariosComponent,
     CrearCategoriaComponent,
     ListaCategoriasComponent,
-    TipoSubastaComponent
+    TipoSubastaComponent,
+    OfertaProductoComponent
   ],
   imports: [
     CommonModule,

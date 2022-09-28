@@ -9,6 +9,7 @@ import { ListaDireccionesComponent } from './components/lista-direcciones/lista-
 import { ListaUsuariosComponent } from './components/lista-usuarios/lista-usuarios.component';
 import { ModificarUsuarioComponent } from './components/modificar-usuario/modificar-usuario.component';
 import { NubeComponent } from './components/nube/nube.component';
+import { OfertaProductoComponent } from './components/oferta-producto/oferta-producto.component';
 import { PerfilUsuarioComponent } from './components/perfil-usuario/perfil-usuario.component';
 import { TipoSubastaComponent } from './components/tipo-subasta/tipo-subasta.component';
 
@@ -24,6 +25,7 @@ const routes: Routes = [
   {path: "addCategoria", component: CrearCategoriaComponent},
   {path: "listaCategoria", component: ListaCategoriasComponent},
   {path: "tipoSubasta", component: TipoSubastaComponent},
+  {path: "ofertaProductos", component: OfertaProductoComponent},
 ];
 
 @NgModule({
