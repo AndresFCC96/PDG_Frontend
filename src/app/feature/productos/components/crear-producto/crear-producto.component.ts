@@ -89,6 +89,8 @@ export class CrearProductoComponent implements OnInit {
     let tiempo = this.loginForm.controls.tiempo.value;
     let valoracionAutor = this.loginForm.controls.valoracionAutor.value;
     let formattedDate = datepipe.transform(fecha, 'dd/MM/YYYY');
+    console.log(this.cliente.cedula);
+
     let producto: Producto = {
       nombre: nombre,
       autor: autor,
@@ -99,7 +101,8 @@ export class CrearProductoComponent implements OnInit {
       fechaSubida: formattedDate,
       tiempo: tiempo,
       descripcion: descripcion,
-      valoracionAutor: valoracionAutor
+      valoracionAutor: valoracionAutor,
+      clienteResponsable: this.cliente.cedula
     }
     console.log(producto);
 

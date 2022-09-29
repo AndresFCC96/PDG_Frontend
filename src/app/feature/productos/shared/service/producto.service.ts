@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, Observable, throwError } from 'rxjs';
+import { Cliente } from 'src/app/feature/dashboard/shared/model/cliente';
 import { environment } from 'src/environments/environment';
 import Swal from 'sweetalert2';
 import { Producto } from '../model/producto';
@@ -14,6 +15,11 @@ export class ProductoService {
 
   consultarProductos(): Observable<Producto[]>{
     return this.httpClient.get<Producto[]>(`${this.url}api/producto/consultarProductos`);
+  }
+
+
+  consultarProductoPorId(id: number): Observable<Producto>{
+    return this.httpClient.get<Producto>(`${this.url}api/producto/consultarProductoPorId?id=${id}`);
   }
 
   consultarProductoPorCategoria(categoria: string): Observable<Producto[]>{
@@ -57,8 +63,22 @@ export class ProductoService {
     );
   }
 
+  modificarProducto(producto: Producto): Observable<Producto>{
+    return this.httpClient.put<Producto>(`${this.url}api/producto/modificarProducto`, producto).pipe(
+      catchError(e => {
+        Swal.fire(
+          'Error al guardar el producto',
+          e.error,
+          'error'
+        );
+        return throwError(e);
+      })
+    );
+  }
 
-
+  consultarProductoPorCliente(cedula: number): Observable<Producto[]>{
+    return this.httpClient.get<Producto[]>(`${this.url}api/producto/consultarProductosPorCliente?cedula=${cedula}`);
+  }
 
 
 

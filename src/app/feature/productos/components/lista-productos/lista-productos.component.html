@@ -20,6 +20,7 @@
                       <th>DESCRIPCION</th>
                       <th>VALORACION</th>
                       <th>ESTADO</th>
+                      <th>TIPO</th>
                       <th>ACCIONES</th>
                   </tr>
               </thead>
@@ -33,12 +34,21 @@
                       <td>{{producto.valoracionAutor|currency:"COP":'symbol-narrow':'3.0'}}</td>
                       <td *ngIf="producto.estado === 'A'; else elseBlock">Activo</td>
                       <ng-template #elseBlock>
-                        <td>Inactivo</td>
+                        <td>Cerrado</td>
                       </ng-template>
+                      <td>{{producto.tipoDeSubasta}}</td>
                       <td>
-                        <button mat-fab color="warn" title="Descargar archivo" (click)="descargarArchivoProducto(producto)">
-                            <mat-icon>delete</mat-icon>
+                        <button mat-fab color="primary" title="Ver clientes que han subastado" (click)="mandarProducto(producto)">
+                            <mat-icon>timeline</mat-icon>
+                        </button>&nbsp;
+                        <button mat-fab color="warn" title="Cerrar subasta" (click)="cerrarSubasta(producto)" *ngIf="producto.estado === 'A'; else elseBlock2">
+                          <mat-icon>close_fullscreen</mat-icon>
                         </button>
+                      <ng-template #elseBlock2>
+                        <button mat-fab color="warn" title="Cerrar subasta" disabled="">
+                          <mat-icon>close_fullscreen</mat-icon>
+                        </button>
+                      </ng-template>
                       </td>
                   </tr>
 

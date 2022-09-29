@@ -13,25 +13,25 @@
       <form [formGroup]="logupForm" class="login-form">
         <div class="col-3 input-effect">
           <input class="effect-16" formControlName="nombre" type="text" placeholder="Nombres" minlength="8"
-            maxlength="25" required>
+            maxlength="25" (keypress)="keyPressAlphanumeric($event)" required>
           <span class="focus-border"></span>
         </div>
 
         <div class="col-3 input-effect">
           <input class="effect-16" formControlName="apellidos" type="text" placeholder="Apellidos" minlength="8"
-            maxlength="25" required>
+            maxlength="25" (keypress)="keyPressAlphanumeric($event)" required>
           <span class="focus-border"></span>
         </div>
 
         <div class="col-3 input-effect">
-          <input class="effect-16" formControlName="cedula" type="number" placeholder="Cedula" minlength="8"
-            maxlength="25" required>
+          <input class="effect-16" formControlName="cedula" type="number" placeholder="Cedula" minlength="7"
+            maxlength="9" required>
           <span class="focus-border"></span>
         </div>
 
         <div class="col-3 input-effect">
-          <input class="effect-16" formControlName="telefono" type="text" placeholder="Telefono" minlength="8"
-            maxlength="25" required>
+          <input class="effect-16" formControlName="telefono" type="text" placeholder="Telefono" minlength="7"
+            maxlength="10" (keypress)="keyPressNumbers($event)"  required>
           <span class="focus-border"></span>
         </div>
 
@@ -43,13 +43,13 @@
 
         <div class="col-3 input-effect">
           <input class="effect-16" formControlName="contra" type="password" placeholder="Contraseña" minlength="8"
-            maxlength="25" required>
+            maxlength="16" required>
           <span class="focus-border"></span>
         </div>
 
         <div class="col-3 input-effect">
           <input class="effect-16" formControlName="recontra" type="password" placeholder="Repetir Contraseña" minlength="8"
-            maxlength="25" required>
+            maxlength="16" required>
           <span class="focus-border"></span>
         </div>
 

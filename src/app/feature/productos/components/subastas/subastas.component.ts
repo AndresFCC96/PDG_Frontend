@@ -104,7 +104,6 @@ export class SubastasComponent implements OnInit {
   // 1 opcion para las subastas del dia actual, 2 para las subastas de otros dias
   calcularProductosMostrados(size: number, opcion: number){
     let contador = size;
-    console.log(contador);
     if(opcion === 1){
       for (let index = 0; index < this.productos.length; index++) {
         if(this.productos[index].fechaSubida !== this.fechaActual){contador--};
@@ -115,7 +114,6 @@ export class SubastasComponent implements OnInit {
       };
     }
     this.productosSize = contador;
-    console.log(this.productosSize);
   }
 
   activarProximos(){
@@ -222,7 +220,7 @@ export class SubastasComponent implements OnInit {
   }
 
   detalleProducto(producto: Producto): void{
-    this.router.navigate(['/productDetail/',producto.nombre], {
+    this.router.navigate(['/productDetail',producto.nombre], {
       queryParams: {
           nombre: producto.nombre,
       },

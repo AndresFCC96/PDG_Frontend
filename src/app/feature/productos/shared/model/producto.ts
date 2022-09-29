@@ -11,5 +11,7 @@ export interface Producto {
   tipoDeSubasta?: string;
   valoracionAutor: number;
   subastaIdsubasta?: number;
+  clienteResponsable?: number;
+  clienteGanador?: number;
   estado?: string;
 }

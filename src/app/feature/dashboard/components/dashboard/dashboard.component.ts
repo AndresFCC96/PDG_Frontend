@@ -24,7 +24,9 @@ export class DashboardComponent implements OnInit {
 
   posicionRutas(){
     this.rutaActual = this.router.url;
+
     console.log(this.rutaActual);
+
 
     if(this.rutaActual == '/Dashboard/userProfile'){
       this.posicionX = 90;
@@ -81,7 +83,10 @@ export class DashboardComponent implements OnInit {
       this.posicionY = 20;
     }
 
-
+    if(this.rutaActual.startsWith('/ofertaProductos')){
+      this.posicionX = 80;
+      this.posicionY = 20;
+    }
   }
 
   obtenerCliente(): Cliente {

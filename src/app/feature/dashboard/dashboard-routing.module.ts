@@ -25,7 +25,7 @@ const routes: Routes = [
   {path: "addCategoria", component: CrearCategoriaComponent},
   {path: "listaCategoria", component: ListaCategoriasComponent},
   {path: "tipoSubasta", component: TipoSubastaComponent},
-  {path: "ofertaProductos", component: OfertaProductoComponent},
+  {path: "ofertaProductos/:producto", component: OfertaProductoComponent},
 ];
 
 @NgModule({

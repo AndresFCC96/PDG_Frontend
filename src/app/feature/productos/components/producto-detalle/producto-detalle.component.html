@@ -11,7 +11,13 @@
             <img src = {{producto.foto}} alt = "shoe image">
           </div>
         </div>
-
+        <div class = "social-links">
+          <mat-chip-list aria-label="Tags">
+            <mat-chip color="white" selected>&nbsp;{{producto.autor}}&nbsp;</mat-chip>
+            <mat-chip color="white" selected>&nbsp;{{producto.categoria}}&nbsp;</mat-chip>
+            <mat-chip color="white" selected>&nbsp;Envios gratuitos a todo Colombia&nbsp;</mat-chip>
+          </mat-chip-list>
+        </div>
       </div>
       <!-- card right -->
       <div class = "product-content">
@@ -37,31 +43,42 @@
             <li>Autor: <span>{{producto.autor}}</span></li>
             <li>Disponibilidad: <span>Disponible</span></li>
             <li>Categoria: <span>{{producto.categoria}}</span></li>
-            <li>Valoracion autor: <span>{{producto.valoracionAutor|currency:"COP":'symbol-narrow':'3.0'}}</span></li>
+            <li>Precio maximo actual: <span>{{producto.valoracionAutor|currency:"COP":'symbol-narrow':'3.0'}}</span></li>
             <li>Costo de envio: <span>Gratis a cualquier parte de Colombia</span></li>
           </ul>
         </div>
 
-        <div class = "purchase-info" *ngIf="comparacio === true; else elseBlock2">
+        <div class = "purchase-info" *ngIf="producto.clienteResponsable !== cedulaClienteActual && cliente; else elseBlock2">
           <input type = "number" min = "0" [(ngModel)]='precioCliente' value = {{precioCliente}}>
-          <button type = "button" class = "btn">
+          <!-- <button type = "button" class = "btn">
             Ofertar <i class = "fas fa-shopping-cart"></i>
+          </button> -->
+          <button class = "botonMas" (click)="subirLaCuenta(250000)">
+            250.000 <i class = "fas fa-plus"></i>
           </button>
-          <button type = "button" class = "btn" (click)="comparacion()">Comparar</button>
+          <button class = "botonMas" (click)="subirLaCuenta(500000)">
+            500.000 <i class = "fas fa-plus"></i>
+          </button>
+          <button class = "botonMas" (click)="subirLaCuenta(1000000)">
+            1.000.000 <i class = "fas fa-plus"></i>
+          </button>
+
+          <button (click)="ofertar(producto)">
+            <span class="shadow"></span>
+            <span class="edge"></span>
+            <span class="front text"> Ofertar
+            </span>
+          </button>
+          <!-- <button type = "button" class = "btn" >Comparar</button> -->
         </div>
 
         <ng-template #elseBlock2>
-          <p>No puede ofertar en su propia subasta</p>
-          <p>{{producto.autor}}-{{comparacio}}</p>
+          <p *ngIf="cliente !== null; else elseBlock3">No puede ofertar en su propia subasta</p><br>
+          <ng-template #elseBlock3>
+            <p>Inicie sesion antes de poder ofertar</p><br>
+          </ng-template>
         </ng-template>
 
-        <div class = "social-links">
-          <mat-chip-list aria-label="Tags">
-            <mat-chip color="white" selected>&nbsp;{{producto.autor}}&nbsp;</mat-chip>
-            <mat-chip color="white" selected>&nbsp;{{producto.categoria}}&nbsp;</mat-chip>
-            <mat-chip color="white" selected>&nbsp;Envios gratuitos a todo Colombia&nbsp;</mat-chip>
-          </mat-chip-list>
-        </div>
       </div>
     </div>
   </div>

@@ -58,7 +58,7 @@ export class RegistroComponent implements OnInit {
     };
 
     email.search(dominio) == -1 ? cliente.rol = 'C' : cliente.rol = 'A';
-    
+
     cliente.contra === cliente.recontra
     ?
     this.clienteService.guardarCliente(cliente).subscribe(data => {
@@ -78,6 +78,30 @@ export class RegistroComponent implements OnInit {
       'Las contraseñas no coinciden',
       'error'
     )
+  }
+
+  keyPressAlphanumeric(event) {
+    var inp = String.fromCharCode(event.keyCode);
+
+    if (/[a-zA-Z ]/.test(inp)) {
+      return true;
+    } else {
+      event.preventDefault();
+      alert("Solo letras por favor");
+      return false;
+    }
+  }
+
+  keyPressNumbers(event) {
+    var charCode = (event.which) ? event.which : event.keyCode;
+    // Only Numbers 0-9
+    if ((charCode < 48 || charCode > 57)) {
+      event.preventDefault();
+      alert("Solo numeros por favor");
+      return false;
+    } else {
+      return true;
+    }
   }
 
 }

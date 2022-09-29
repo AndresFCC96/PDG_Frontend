@@ -2,8 +2,10 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Cliente } from 'src/app/feature/dashboard/shared/model/cliente';
 import { ScriptService } from 'src/app/feature/metodos-de-pago/shared/service/script.service';
+import { Ofertas } from 'src/app/feature/ofertas/shared/model/ofertas';
 import Swal from 'sweetalert2';
 import { Producto } from '../../shared/model/producto';
+import { OfertaService } from '../../shared/service/oferta.service';
 import { ProductoService } from '../../shared/service/producto.service';
 
 @Component({
@@ -17,14 +19,15 @@ export class ProductoDetalleComponent implements OnInit {
   producto: Producto;
   query: Producto[];
   cliente: Cliente;
-  precioCliente: number;
-  nombreCompleto: string;
-  comparacio: boolean;
+  comparacio: boolean = false;
+  precioCliente: number = 0;
+  cedulaClienteActual: number;
 
   constructor(
     protected jsServiceLoader: ScriptService,
     protected productoService: ProductoService,
     private activatedRouter: ActivatedRoute,
+    private ofertaService: OfertaService,
   ) {}
 
   ngOnInit(): void {
@@ -34,11 +37,14 @@ export class ProductoDetalleComponent implements OnInit {
     this.cargarProducto();
     this.cargaPaginaProducto();
     this.cliente = this.obtenerCliente();
-    this.validarNombres();
   }
 
   ngOnDestroy(): void {
     this.jsServiceLoader.removeScript('detalleProducto');
+  }
+
+  subirLaCuenta(valor: number){
+    this.precioCliente = this.precioCliente + valor;
   }
 
   obtenerCliente(): Cliente {
@@ -47,7 +53,7 @@ export class ProductoDetalleComponent implements OnInit {
     data = localStorage.getItem('persona');
     if (data) {
       cliente = JSON.parse(data);
-      this.nombreCompleto = cliente.nombre + ' ' + cliente.apellidos;
+      this.cedulaClienteActual = cliente.cedula;
     }
     return cliente;
   }
@@ -61,12 +67,6 @@ export class ProductoDetalleComponent implements OnInit {
     })
   }
 
-  validarNombres(){
-    (this.nombreCompleto == this.producto.autor) && (this.nombreCompleto != undefined) && (this.nombreCompleto != null)? this.comparacio = true : this.comparacio = false;
-    console.log(this.comparacio);
-
-  }
-
   cargaPaginaProducto() {
     this.jsServiceLoader
       .loadScript({ id: 'detalleProducto', url: 'assets/js/script.js' })
@@ -76,35 +76,51 @@ export class ProductoDetalleComponent implements OnInit {
       .catch((error) => console.log(error));
   }
 
-  comparacion() {
-    const mayor: number = (this.precioCliente - this.producto.valoracionAutor);
-    const menor: number = this.producto.valoracionAutor - this.precioCliente;
-
-    console.log(this.precioCliente);
-
-    if(!this.precioCliente){
-      Swal.fire(
-        'Error',
-        'Debes de proporcionar un valor para comparar',
-        'error'
-      )
-    }else{
-      this.producto.valoracionAutor < this.precioCliente
-      ?
-      Swal.fire(
-        'Estas pagando mas de lo que el autor pide',
-        'Te sobran ' + mayor,
-        'info'
-      )
-      // console.log('mayor ' + mayor)
-      :
-      Swal.fire(
-        'Estas pagando menos de lo que el autor pide',
-        'Debes ' + menor,
-        'info'
-      )
-      // console.log('menor ' + menor)
+  ofertar(productoParamatro: Producto) {
+    let total = productoParamatro.valoracionAutor + this.precioCliente;
+    let oferta: Ofertas = {
+      clienteOferta: this.cliente.cedula,
+      clienteResponsable: productoParamatro.clienteResponsable,
+      nombreClienteOferta: this.cliente.nombre + ' ' + this.cliente.apellidos,
+      valorOferta: total,
+      producto: productoParamatro.idproducto,
+      estado: 'O'
     }
+    console.log(oferta.nombreClienteOferta);
 
+
+    this.ofertaService.guardarOferta(oferta).subscribe(oferta => {
+        if(oferta){
+          if(productoParamatro.valoracionAutor < (productoParamatro.valoracionAutor + this.precioCliente) && this.producto.tipoDeSubasta === 'S'){
+            productoParamatro.valoracionAutor = (productoParamatro.valoracionAutor + this.precioCliente)
+            this.productoService.modificarProducto(productoParamatro).subscribe();
+          };
+          Swal.fire(
+            'Felicidades!',
+            'Has hecho una oferta de ' + (productoParamatro.valoracionAutor) + ' pesos',
+            'success'
+          );
+      }
+    })
+    // if(this.precioCliente === 0){
+    // }else{
+    //   this.ofertaService.guardarOferta()
+    //   this.producto.valoracionAutor < this.precioCliente
+    //   ?
+    //   Swal.fire(
+    //     'Estas pagando mas de lo que el autor pide',
+    //     'Te sobran ' + mayor,
+    //     'info'
+    //   )
+    //   // console.log('mayor ' + mayor)
+    //   :
+    //   Swal.fire(
+    //     'Estas pagando menos de lo que el autor pide',
+    //     'Debes ' + menor,
+    //     'info'
+    //   )
+    // }
   }
+
+
 }

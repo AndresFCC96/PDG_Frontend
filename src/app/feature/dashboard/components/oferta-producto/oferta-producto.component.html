@@ -1,1 +1,58 @@
-<p>oferta-producto works!</p>
+<app-navbar></app-navbar>
+
+<div class="container">
+  <div class="profile-box">
+    <app-dashboard></app-dashboard>
+
+    <div class="card">
+      <div class="table-title">
+          <h2>Lista de subastas a {{producto.nombre}}</h2>
+      </div>
+      <div class="table-concept"><input class="table-radio" type="radio" name="table_radio" id="table_radio_0" checked="checked" />
+          <div class="table-display">Mostrando {{sizeOfertas}} resultados</div>
+          <table>
+              <thead>
+                  <tr>
+                      <th>No</th>
+                      <th>NOMBRE CLIENTE</th>
+                      <th>PRODUCTO</th>
+                      <th>VALOR OFERTA</th>
+                      <th>Estado</th>
+                      <th *ngIf="producto.tipoDeSubasta === 'B' && producto.estado === 'A'">ACCIONES</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr *ngFor="let oferta of ofertas | slice: (page-1) * pageSize : page * pageSize">
+                      <td>{{oferta.idOferta}}</td>
+                      <td>{{oferta.nombreClienteOferta}}</td>
+                      <td>{{producto.nombre}}</td>
+                      <td>{{oferta.valorOferta|currency:"COP":'symbol-narrow':'3.0'}}</td>
+                      <td *ngIf="oferta.estado !== 'G'; else elseBlock">Oferto</td>
+                      <ng-template #elseBlock>
+                          <td *ngIf="oferta.estado === 'G'">Ganador</td>
+                      </ng-template>
+                      <td *ngIf="producto.tipoDeSubasta === 'B' && producto.estado === 'A'">
+                        <button mat-fab color="primary" title="Escoger como ganador" *ngIf="producto.estado === 'A'" (click)="cerrarbajasta(producto, oferta)">
+                            <mat-icon>workspace_premium</mat-icon>
+                        </button>
+                        <ng-template>
+                          <button mat-fab color="primary" title="Ya se escogio ganador" disabled="">
+                            <mat-icon>workspace_premium</mat-icon>
+                          </button>
+                        </ng-template>
+                      </td>
+                  </tr>
+
+              </tbody>
+
+          </table>
+          <ngb-pagination
+          class="paginador"
+          [(page)]="page"
+          [pageSize]="pageSize"
+          [collectionSize]="sizeOfertas"></ngb-pagination>
+      </div>
+  </div>
+
+    </div>
+  </div>
