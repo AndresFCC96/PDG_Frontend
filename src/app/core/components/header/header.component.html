@@ -10,8 +10,6 @@
     </a>
     <!-- Anclas -->
     <div class="col-auto">
-      <a href="#" class="text-reset pr-3">Inicio</a>
-      <a [routerLink]="['Soon']" href="#" class="text-reset pr-3">Acerca de Nosotros</a>
       <a [routerLink]="['Subastas']" href="#" class="text-reset pr-3">Subastas</a>
       <a *ngIf="loggeado === false ; else elseBlock" [routerLink]="['Auth/Login']" routerLinkActive="active" class="text-reset">Ingresar</a>
       <ng-template #elseBlock>

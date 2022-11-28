@@ -15,12 +15,9 @@
                   <tr>
                       <th>No</th>
                       <th>NOMBRE</th>
-                      <th>CATEGORIA</th>
-                      <th>AUTOR</th>
-                      <th>DESCRIPCION</th>
-                      <th>VALORACION</th>
+                      <th>CATEGORÍA</th>
+                      <th>VALORACIÓN</th>
                       <th>ESTADO</th>
-                      <th>TIPO</th>
                       <th>ACCIONES</th>
                   </tr>
               </thead>
@@ -29,14 +26,11 @@
                       <td>{{producto.idproducto}}</td>
                       <td>{{producto.nombre}}</td>
                       <td>{{producto.categoria}}</td>
-                      <td>{{producto.autor}}</td>
-                      <td>{{producto.descripcion}}</td>
                       <td>{{producto.valoracionAutor|currency:"COP":'symbol-narrow':'3.0'}}</td>
                       <td *ngIf="producto.estado === 'A'; else elseBlock">Activo</td>
                       <ng-template #elseBlock>
                         <td>Cerrado</td>
                       </ng-template>
-                      <td>{{producto.tipoDeSubasta}}</td>
                       <td>
                         <button mat-fab color="primary" title="Ver clientes que han subastado" (click)="mandarProducto(producto)">
                             <mat-icon>timeline</mat-icon>

@@ -19,7 +19,7 @@ export class OfertaProductoComponent implements OnInit {
   sizeOfertas: number;
   ofertaMaxima: Ofertas;
   page = 1;
-  pageSize = 10;
+  pageSize = 5;
   nombreGanador: string;
   ofertaGanadora: number;
 

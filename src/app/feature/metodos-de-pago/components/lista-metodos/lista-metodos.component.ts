@@ -18,7 +18,7 @@ export class ListaMetodosComponent implements OnInit {
   metodos: MetodoDePago[];
   sizeMetodos: number;
   page = 1;
-  pageSize = 10;
+  pageSize = 5;
 
   constructor(private metodosService: MetodoDePagoService,
     private router: Router) { }

@@ -16,19 +16,19 @@
         </div>
 
         <div class="col-3 ">
-          <p class="atributo">Categoria</p>
+          <p class="atributo">Categoría</p>
           <!-- <input class="effect-16" formControlName="categoria" type="text" minlength="8" maxlength="25" required> -->
           <mat-select formControlName="categoria">
             <mat-option *ngFor="let categoria of categorias" [value]="categoria.nombre">{{categoria.nombre}}</mat-option>
           </mat-select>
         </div>
         <div class="col-3 input-effect">
-          <p class="atributo">Descripcion</p>
+          <p class="atributo">Descripción</p>
           <input class="effect-16" formControlName="descripcion" type="text" minlength="8" maxlength="200" required>
         </div>
 
         <div class="col-3 input-effect">
-          <p class="atributo">Valoracion</p>
+          <p class="atributo">Valoración</p>
           <input class="effect-16" formControlName="valoracionAutor" type="number" minlength="8" maxlength="25"
             required>
         </div>

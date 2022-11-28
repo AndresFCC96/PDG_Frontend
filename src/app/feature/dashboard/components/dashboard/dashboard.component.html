@@ -10,15 +10,15 @@
             <li><a href="#" [routerLink]="['/Dashboard/editUserInfo']">Modificar datos</a></li>
             <li><a href="#" [routerLink]="['/tipoSubasta']">Subastar un producto</a></li>
             <li><a href="#" [routerLink]="['/listProduct']">Ver mis productos subastados</a></li>
-            <li><a href="#" [routerLink]="['/paymentDetails']">Añadir nuevo metodo de pago</a></li>
-            <li><a href="#" [routerLink]="['/Dashboard/metodosList']">Ver mis metodos de pago</a></li>
+            <li><a href="#" [routerLink]="['/paymentDetails']">Añadir método de pago</a></li>
+            <li><a href="#" [routerLink]="['/Dashboard/metodosList']">Ver mis métodos de pago</a></li>
           </ul>
           <!-- Anclas administradores -->
           <ul *ngIf="rol === 'A'">
             <li><a href="#">Inicio</a></li>
             <li><a href="#" [routerLink]="['/Dashboard/usuarioList']">Ver usuarios</a></li>
             <li><a href="#" [routerLink]="['/listProduct']">Ver subastas</a></li>
-            <li><a href="#" [routerLink]="['/listaCategoria']">Ver categorias</a></li>
+            <li><a href="#" [routerLink]="['/listaCategoria']">Ver categorías</a></li>
           </ul>
         </div>
       </div>

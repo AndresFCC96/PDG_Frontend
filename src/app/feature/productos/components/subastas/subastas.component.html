@@ -16,14 +16,14 @@
 
         <div class="col-lg-3 blog-form">
 
-          <h2 class="blog-sidebar-title"><b>Categorias</b></h2>
+          <h2 class="blog-sidebar-title"><b>Categorías</b></h2>
           <hr />
           <p class="blog-sidebar-list"><b><span class="list-icon"> > </span><a role="button" (click)="filtrarPorCategoria('Arte')">Arte</a></b></p>
           <p class="blog-sidebar-list"><b><span class="list-icon"> > </span> <a role="button" (click)="filtrarPorCategoria('Cripto')">Cripto</a></b></p>
-          <p class="blog-sidebar-list"><b><span class="list-icon"> > </span> <a role="button" (click)="filtrarPorCategoria('Tecnologia')">Tecnologia</a></b></p>
+          <p class="blog-sidebar-list"><b><span class="list-icon"> > </span> <a role="button" (click)="filtrarPorCategoria('Tecnología')">Tecnología</a></b></p>
           <p class="blog-sidebar-list"><b><span class="list-icon"> > </span> <a role="button" (click)="filtrarPorCategoria('Antiguedades')">Antiguedades</a></b></p>
           <p class="blog-sidebar-list"><b><span class="list-icon"> > </span> <a role="button" (click)="filtrarPorCategoria('Ropa y diseño de modas')">Ropa y diseño de modas</a></b></p>
-          <p class="blog-sidebar-list"><b><span class="list-icon"> > </span> <a role="button" (click)="seleccionarCategoriaFiltro()">Otras categorias</a></b></p>
+          <p class="blog-sidebar-list"><b><span class="list-icon"> > </span> <a role="button" (click)="seleccionarCategoriaFiltro()">Otras categorías</a></b></p>
 
           <div>&nbsp;</div>
           <div>&nbsp;</div>
@@ -38,7 +38,7 @@
           </div>
 
           <button type="button" class="btn btn-dark btn-lg" (click)="filtrarPorNombre()">Filtrar</button>
-          <button type="button" class="btn btn-light btn-lg" (click)="limpiarFiltros()">Limpiar</button>
+          <button type="button" class="btn btn-light btn-lg" (click)="cargarProductos()">Limpiar</button>
 
           <div>&nbsp;</div>
           <div>&nbsp;</div>
@@ -90,7 +90,7 @@
 
           <div  class="row">
             <ng-container *ngFor="let producto of productos">
-              <div *ngIf="fechaActual === producto.fechaSubida && estadoSubastasProximas === false" class="col-sm-3 col-md-6 col-lg-4">
+              <div *ngIf="fechaActual === producto.fechaSubida && estadoSubastasProximas === false && producto.estado === 'A' " class="col-sm-3 col-md-6 col-lg-4">
                 <div class="card" >
                   <div class="card-body text-center">
                     <img src={{producto.foto}} class="product-image">
@@ -98,13 +98,13 @@
                     <p class="card-text small">{{producto.descripcion}}</p>
                     <p class="tags">Vendido por {{producto.autor}}</p>
                     <p class="tags">Maximo actual {{producto.valoracionAutor|currency:"COP":'symbol-narrow':'3.0'}}</p>
-                    <a class="btn btn-success button-text">Comprar</a>&nbsp;&nbsp;
+                    <!-- <a class="btn btn-success button-text">Comprar</a>&nbsp;&nbsp; -->
                     <a class="btn btn-success button-text" (click)="detalleProducto(producto)">Ver detalle</a>
                   </div>
                 </div>
               </div>
 
-              <div *ngIf="fechaActual !== producto.fechaSubida && estadoSubastasProximas === true" class="col-sm-3 col-md-6 col-lg-4">
+              <div *ngIf="fechaActual !== producto.fechaSubida && estadoSubastasProximas === true && producto.estado != 'C'" class="col-sm-3 col-md-6 col-lg-4">
                 <div class="card" >
                   <div class="card-body text-center">
                     <img src={{producto.foto}} class="product-image">

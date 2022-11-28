@@ -114,7 +114,9 @@ export class ModificarUsuarioComponent implements OnInit {
       telefono: telefono,
       contra: pass,
       recontra: repass,
-      rol: 'C'
+      rol: 'C',
+      foto: this.cliente.foto,
+      estado: 'A'
     };
 
     console.log(cliente);

@@ -22,7 +22,7 @@ export class ListaProductosComponent implements OnInit {
   sizeProductos: number;
   ruta:string;
   page = 1;
-  pageSize = 10;
+  pageSize = 5;
   rol: string = '';
   ofertaMaxima: Ofertas;
   nombreGanador: string;

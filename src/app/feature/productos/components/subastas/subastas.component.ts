@@ -106,14 +106,39 @@ export class SubastasComponent implements OnInit {
     let contador = size;
     if(opcion === 1){
       for (let index = 0; index < this.productos.length; index++) {
-        if(this.productos[index].fechaSubida !== this.fechaActual){contador--};
+        if(this.productos[index].fechaSubida !== this.fechaActual ){contador--;
+          // console.log(this.productos[index].fechaSubida, this.fechaActual);
+          // console.log(this.productos[index].fechaSubida === this.fechaActual);
+        };
       }
     }else{
+      const index = [];
       for (let index = 0; index < this.productos.length; index++) {
-        if(this.productos[index].fechaSubida === this.fechaActual){contador--};
+        var parts = this.productos[index].fechaSubida.split('/');
+        var d1 = Number(parts[2] + parts[1] + parts[0]);
+        parts = this.fechaActual.split('/');
+        var d2 = Number(parts[2] + parts[1] + parts[0]);
+        if((this.productos[index].fechaSubida === this.fechaActual) || d1 < d2){
+          contador--;
+          this.productos[index].estado = 'C';
+        };
+
       };
     }
+    // console.log(contador);
+
     this.productosSize = contador;
+  }
+
+  compararFechas(fecha: string): boolean{
+    let fechaLocal = Date.parse(this.fechaActual);
+    let fechaParametro = Date.parse(fecha);
+    if(fechaLocal > fechaParametro ){
+      this.productosSize = this.productosSize--;
+      return true;
+    }else{
+      return false;
+    }
   }
 
   activarProximos(){
@@ -121,6 +146,7 @@ export class SubastasComponent implements OnInit {
       this.estadoSubastasProximas = false;
       this.labelSubastas = 'Proximas subastas';
       this.calcularProductosMostrados(this.productos.length, 1);
+      this.cargarProductos();
     }else{
       this.estadoSubastasProximas = true;
       this.labelSubastas = 'Subastas del dia';
@@ -173,6 +199,8 @@ export class SubastasComponent implements OnInit {
   }
 
   filtrarPorNombre(): void{
+    console.log(this.nombre);
+
     if(this.nombre){
       this.productoService.consultarProductoPorNombre(this.nombre).subscribe(
         producto => {
@@ -184,13 +212,11 @@ export class SubastasComponent implements OnInit {
 
   filtrarPorCategoria(categoria: string){
     console.log(categoria);
-
     this.productoService.consultarProductoPorCategoria(categoria).subscribe(
       producto => {
-          console.log(this.productos);
-
           this.productos = producto;
-
+          // this.productosSize = this.productos.length;
+          console.log(this.productos);
       },
       err => {
         console.log(err)
@@ -209,10 +235,6 @@ export class SubastasComponent implements OnInit {
           })
       }
     )
-
-    console.log(this.productos.length);
-
-
   }
 
   limpiarFiltros(): void{
@@ -237,7 +259,7 @@ export class SubastasComponent implements OnInit {
 
   async seleccionarCategoriaFiltro(){
     const categorias = [];
-    this.categorias.forEach(categoria => {if(categoria.nombre !== 'Arte' && categoria.nombre !== 'Cripto' && categoria.nombre !== 'Tecnologia' && categoria.nombre !== 'Antiguedades' && categoria.nombre !== 'Ropa y diseño de modas'){categorias.push( categoria.nombre)}});
+    this.categorias.forEach(categoria => {if(categoria.nombre !== 'Arte' && categoria.nombre !== 'Cripto' && categoria.nombre !== 'Tecnología' && categoria.nombre !== 'Antiguedades' && categoria.nombre !== 'Ropa y diseño de modas'){categorias.push( categoria.nombre), this.productosSize = 0}});
     const { value: valor } = await Swal.fire({
       title: 'Seleccionar una categoria',
       input: 'select',

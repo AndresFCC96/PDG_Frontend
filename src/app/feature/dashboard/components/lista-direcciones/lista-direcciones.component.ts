@@ -17,7 +17,7 @@ export class ListaDireccionesComponent implements OnInit {
   direcciones: Direccion[];
   sizeDirecciones: number;
   page = 1;
-  pageSize = 10;
+  pageSize = 5;
 
   constructor(private direccionesService:DireccionService,
     private router: Router) { }

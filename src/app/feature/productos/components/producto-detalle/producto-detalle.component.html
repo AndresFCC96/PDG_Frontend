@@ -37,12 +37,12 @@
         </div>
 
         <div class = "product-detail">
-          <h2>Descripcion: </h2>
+          <h2>Descripción: </h2>
           <p>{{producto.descripcion}}</p>
           <ul>
             <li>Autor: <span>{{producto.autor}}</span></li>
             <li>Disponibilidad: <span>Disponible</span></li>
-            <li>Categoria: <span>{{producto.categoria}}</span></li>
+            <li>Categoría: <span>{{producto.categoria}}</span></li>
             <li>Precio maximo actual: <span>{{producto.valoracionAutor|currency:"COP":'symbol-narrow':'3.0'}}</span></li>
             <li>Costo de envio: <span>Gratis a cualquier parte de Colombia</span></li>
           </ul>
@@ -73,7 +73,7 @@
         </div>
 
         <ng-template #elseBlock2>
-          <p *ngIf="cliente !== null; else elseBlock3">No puede ofertar en su propia subasta</p><br>
+          <p *ngIf="cliente !== undefined; else elseBlock3">No puede ofertar en su propia subasta</p><br>
           <ng-template #elseBlock3>
             <p>Inicie sesion antes de poder ofertar</p><br>
           </ng-template>
